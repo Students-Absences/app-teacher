@@ -6,8 +6,8 @@ import {
     StyleSheet,
     useColorScheme
 } from 'react-native';
-import Colors from '@/Colors';
-import NavBar from '@/components/layout/NavBar';
+import Colors from './src//Colors';
+import NavBar from './src//components/layout/NavBar';
 
 const App = (): JSX.Element => {
     const isDarkMode = useColorScheme() === 'dark';
