@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -6,8 +5,8 @@ import {
     StyleSheet,
     useColorScheme
 } from 'react-native';
-import Colors from './src//Colors';
-import NavBar from './src//components/layout/NavBar';
+import Colors from './src/Colors';
+import NavBar from './src/components/layout/NavBar';
 
 const App = (): JSX.Element => {
     const isDarkMode = useColorScheme() === 'dark';
