@@ -5,29 +5,29 @@
  * @author Stratis Dermanoutsos
  */
 const Colors = {
-    //? background
-    background_dark: '#2D333B',
-    background_darker: '#22272D',
-    background_darkest: '#1C2128',
-    background_light: '#E5E5E5',
-    background_lighter: '#F5F5F5',
-    background_lightest: '#FFFFFF',
+    //? Background
+    BACKGROUND_DARK: '#2D333B',
+    BACKGROUND_DARKER: '#22272D',
+    BACKGROUND_DARKEST: '#1C2128',
+    BACKGROUND_LIGHT: '#E5E5E5',
+    BACKGROUND_LIGHTER: '#F5F5F5',
+    BACKGROUND_LIGHTEST: '#FFFFFF',
 
-    //? text
-    text_dark_high: 'rgba(255, 255, 255, 0.87)',
-    text_dark_medium: 'rgba(255, 255, 255, 0.65)',
-    text_dark_low: 'rgba(255, 255, 255, 0.30)',
-    text_light_high: 'rgba(0, 0, 0, 0.87)',
-    text_light_medium: 'rgba(0, 0, 0, 0.65)',
-    text_light_low: 'rgba(0, 0, 0, 0.30)',
+    //? Text
+    TEXT_DARK_HIGH: 'rgba(255, 255, 255, 0.87)',
+    TEXT_DARK_MEDIUM: 'rgba(255, 255, 255, 0.65)',
+    TEXT_DARK_LOW: 'rgba(255, 255, 255, 0.30)',
+    TEXT_LIGHT_HIGH: 'rgba(0, 0, 0, 0.87)',
+    TEXT_LIGHT_MEDIUM: 'rgba(0, 0, 0, 0.65)',
+    TEXT_LIGHT_LOW: 'rgba(0, 0, 0, 0.30)',
 
-    //? primary
-    primary_dark: '#6101EE',
-    primary_light: '#2196F3',
+    //? Primary
+    PRIMARY_DARK: '#6101EE',
+    PRIMARY_LIGHT: '#2196F3',
 
-    //? secondary
-    secondary_dark: '#CE93D8',
-    secondary_light: '#90CAF9',
+    //? Secondary
+    SECONDARY_DARK: '#CE93D8',
+    SECONDARY_LIGHT: '#90CAF9',
 };
 
 export default Colors;

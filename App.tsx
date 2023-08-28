@@ -5,7 +5,7 @@ import {
     StyleSheet,
     useColorScheme
 } from 'react-native';
-import Colors from '@/Colors';
+import Color from '@/Colors';
 import NavBar from '@components/layout/NavBar';
 
 const App = (): JSX.Element => {
@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
 
     const styles = StyleSheet.create({
         background: {
-            backgroundColor: isDarkMode ? Colors.background_darkest : Colors.background_light,
+            backgroundColor: isDarkMode ? Color.BACKGROUND_DARKEST : Color.BACKGROUND_LIGHT,
             flex: 1
         }
     });
@@ -22,7 +22,7 @@ const App = (): JSX.Element => {
         <SafeAreaView style={styles.background}>
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={isDarkMode ? Colors.background_dark : Colors.background_lightest}
+                backgroundColor={isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST}
             />
             <NavBar />
             <ScrollView contentInsetAdjustmentBehavior='automatic'>

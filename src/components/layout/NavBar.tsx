@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import Colors from '@/Colors';
+import Color from '@/Colors';
 
 const NavBar = (): JSX.Element => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -7,7 +7,7 @@ const NavBar = (): JSX.Element => {
     const styles = StyleSheet.create({
         background: {
             alignItems: 'center',
-            backgroundColor: isDarkMode ? Colors.background_dark : Colors.background_lightest,
+            backgroundColor: isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST,
             display: 'flex',
             flexDirection: 'row',
             paddingHorizontal: 24,
@@ -15,7 +15,7 @@ const NavBar = (): JSX.Element => {
             zIndex: 2
         },
         text: {
-            color: isDarkMode ? Colors.text_dark_high : Colors.text_light_high,
+            color: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
             fontSize: 24,
             fontWeight: 'bold',
             marginLeft: 16
