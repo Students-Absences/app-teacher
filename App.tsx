@@ -5,8 +5,12 @@ import {
     StyleSheet
 } from 'react-native';
 import Color from '@/Colors';
-import NavBar from '@components/layout/NavBar';
-import useDarkMode from '@hooks/useDarkMode';
+import NavBar from '@/components/layout/NavBar';
+import useDarkMode from '@/hooks/useDarkMode';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const App = (): JSX.Element => {
     const isDarkMode = useDarkMode();
@@ -25,12 +29,10 @@ const App = (): JSX.Element => {
                 backgroundColor={isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST}
             />
             <NavBar />
-            <ScrollView contentInsetAdjustmentBehavior='automatic'>
-                {/* <Header />
-                <View>
-                <LearnMoreLinks />
-                </View> */}
-            </ScrollView>
+            <NavigationContainer>
+                <Stack.Navigator>
+                </Stack.Navigator>
+            </NavigationContainer>
         </SafeAreaView>
     );
 };
