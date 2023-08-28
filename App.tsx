@@ -1,16 +1,18 @@
 import {
     SafeAreaView,
-    ScrollView,
     StatusBar,
-    StyleSheet
+    StyleSheet,
+    Text
 } from 'react-native';
 import Color from '@/Colors';
 import NavBar from '@/components/layout/NavBar';
 import useDarkMode from '@/hooks/useDarkMode';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Home from '@/screens/Home';
+import React from 'react';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const App = (): JSX.Element => {
     const isDarkMode = useDarkMode();
@@ -30,8 +32,12 @@ const App = (): JSX.Element => {
             />
             <NavBar />
             <NavigationContainer>
-                <Stack.Navigator>
-                </Stack.Navigator>
+                <Drawer.Navigator
+                    initialRouteName='Home'
+                    {...{ screenOptions: { headerShown: false }}}
+                >
+                    <Drawer.Screen name='Home' component={Home} />
+                </Drawer.Navigator>
             </NavigationContainer>
         </SafeAreaView>
     );
