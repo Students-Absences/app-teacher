@@ -3,11 +3,9 @@
     "allowJs": false,
     "compilerOptions": {
         "baseUrl": ".",
-        "jsx": "react-jsx",
-        "jsxImportSource": "react",
         "paths": {
-            "@/*": ["./src/*"],
-            "@components/*": ["./src/components/*"]
+            "@/*": ["src/*"],
+            "@components/*": ["src/components/*"]
         }
     },
     "forceConsistentCasingInFileNames": true
