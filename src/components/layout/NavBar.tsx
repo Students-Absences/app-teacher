@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
+import { SCHOOL_LOGO, SCHOOL_NAME } from '@/Consts';
 
 const NavBar = (): JSX.Element => {
     const isDarkMode = useDarkMode();
@@ -31,9 +32,9 @@ const NavBar = (): JSX.Element => {
         <View style={styles.background}>
             <Image
                 style={styles.logo}
-                source={{ uri: 'https://5lykeiovyrona.gr/img/logo-mobile.png' }}
+                source={{ uri: SCHOOL_LOGO }}
             />
-            <Text style={styles.text}>5ο ΓΕΛ Βύρωνος</Text>
+            <Text style={styles.text}>{SCHOOL_NAME}</Text>
         </View>
     );
 };
