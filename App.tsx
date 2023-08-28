@@ -2,14 +2,14 @@ import {
     SafeAreaView,
     ScrollView,
     StatusBar,
-    StyleSheet,
-    useColorScheme
+    StyleSheet
 } from 'react-native';
 import Color from '@/Colors';
 import NavBar from '@components/layout/NavBar';
+import useDarkMode from '@hooks/useDarkMode';
 
 const App = (): JSX.Element => {
-    const isDarkMode = useColorScheme() === 'dark';
+    const isDarkMode = useDarkMode();
 
     const styles = StyleSheet.create({
         background: {
