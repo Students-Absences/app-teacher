@@ -11,10 +11,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '@/screens/Home';
 import React from 'react';
 
-const Drawer = createDrawerNavigator();
-
 const App = (): JSX.Element => {
     const isDarkMode = useDarkMode();
+
+    const Drawer = createDrawerNavigator();
 
     const styles = StyleSheet.create({
         background: {
