@@ -2,8 +2,16 @@ import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
 import React from 'react';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { Image, Pressable, StyleSheet } from 'react-native';
-import { DrawerActions, ParamListBase, useNavigation } from '@react-navigation/native';
+import {
+    Image,
+    Pressable,
+    StyleSheet
+} from 'react-native';
+import {
+    DrawerActions,
+    ParamListBase,
+    useNavigation
+} from '@react-navigation/native';
 
 const DrawerToggle = () => {
     const isDarkMode = useDarkMode();
@@ -29,7 +37,6 @@ const DrawerToggle = () => {
         }
     });
 
-    // TODO: Replace text
     return (
         <Pressable
             onPress={openDrawer}

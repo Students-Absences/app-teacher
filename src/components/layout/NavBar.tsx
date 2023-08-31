@@ -1,4 +1,9 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {
+    Image,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native';
 import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
 import { SCHOOL_LOGO, SCHOOL_NAME } from '@/Consts';
