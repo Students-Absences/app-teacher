@@ -20,6 +20,9 @@ const App = (): JSX.Element => {
         background: {
             backgroundColor: isDarkMode ? Color.BACKGROUND_DARKEST : Color.BACKGROUND_LIGHT,
             flex: 1
+        },
+        drawerItem: {
+            color: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
         }
     });
 
@@ -32,10 +35,22 @@ const App = (): JSX.Element => {
             <NavigationContainer>
                 <NavBar />
                 <Drawer.Navigator
+                    detachInactiveScreens
                     initialRouteName='Home'
-                    {...{ screenOptions: { headerShown: false }}}
+                    screenOptions={{
+                        headerShown: false,
+                        drawerStyle: {
+                            backgroundColor: isDarkMode ? Color.BACKGROUND_DARKER : Color.BACKGROUND_LIGHTER
+                        },
+                        drawerItemStyle: {
+                            backgroundColor: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
+                        },
+                        drawerPosition: 'right'
+                    }}
+                    
                 >
                     <Drawer.Screen name='Home' component={Home} />
+                    <Drawer.Screen name='Home2' component={Home} />
                 </Drawer.Navigator>
             </NavigationContainer>
         </SafeAreaView>
