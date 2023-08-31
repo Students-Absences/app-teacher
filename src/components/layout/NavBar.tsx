@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
 import { SCHOOL_LOGO, SCHOOL_NAME } from '@/Consts';
+import DrawerToggle from '@/components/button/DrawerToggle';
 
 const NavBar = (): JSX.Element => {
     const isDarkMode = useDarkMode();
@@ -16,15 +17,15 @@ const NavBar = (): JSX.Element => {
             paddingVertical: 8,
             zIndex: 2
         },
+        logo: {
+            width: 42,
+            height: 45
+        },
         text: {
             color: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
             fontSize: 24,
             fontWeight: 'bold',
             marginLeft: 16
-        },
-        logo: {
-            width: 42,
-            height: 45
         }
     });
 
@@ -35,6 +36,7 @@ const NavBar = (): JSX.Element => {
                 source={{ uri: SCHOOL_LOGO }}
             />
             <Text style={styles.text}>{SCHOOL_NAME}</Text>
+            <DrawerToggle />
         </View>
     );
 };

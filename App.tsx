@@ -1,8 +1,7 @@
 import {
     SafeAreaView,
     StatusBar,
-    StyleSheet,
-    Text
+    StyleSheet
 } from 'react-native';
 import Color from '@/Colors';
 import NavBar from '@/components/layout/NavBar';
@@ -30,8 +29,8 @@ const App = (): JSX.Element => {
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST}
             />
-            <NavBar />
             <NavigationContainer>
+                <NavBar />
                 <Drawer.Navigator
                     initialRouteName='Home'
                     {...{ screenOptions: { headerShown: false }}}
