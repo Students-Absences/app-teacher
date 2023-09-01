@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import { DrawerActions } from '@react-navigation/native';
 import { ReactNode } from 'react';
-import DrawerItemProps from '@/types/DrawerItemProps';
+import Route from '@/types/Route';
 import useLocalization from '@/hooks/useLocalization';
 import useColor from '@/hooks/useColor';
 
@@ -14,7 +14,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
     const color = useColor();
     const translator = useLocalization();
 
-    const drawerItems: DrawerItemProps[] = [{
+    const drawerItems: Route[] = [{
         key: 'home',
         labelKey:'LABEL_HOME'
     }, {

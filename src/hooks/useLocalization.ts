@@ -28,6 +28,9 @@ const useLocalization = () => {
      * @returns The string corresponding to the key
      */
     const get = (key: string): string => {
+        if (!locales[key])
+            throw new Error(`INVALID KEY: ${key}`);
+
         return locales[key];
     };
 
@@ -38,9 +41,6 @@ const useLocalization = () => {
      * @returns The string corresponding to the key, without accents
      */
     const getNoAccents = (key: string): string => {
-        if (!get(key))
-            return `INVALID KEY: ${key}`;
-
         return get(key).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     };
 
