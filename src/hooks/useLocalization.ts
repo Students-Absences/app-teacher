@@ -8,6 +8,12 @@ const deviceLanguage = Platform.OS === 'ios' ?
 /**
  * A hook that detects the device's preferred language and returns the selected localized string.
  * 
+ * @example
+ * const translator = useLocalization();
+ * console.log(translator.get('hello'));
+ * // "Γεια σου" if the device's preferred language is Greek
+ * // "Hello" if it's English
+ * 
  * @returns An object containing the locales object and the get, getNoAccents and getCapitalized functions.
  */
 const useLocalization = () => {
