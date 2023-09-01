@@ -32,7 +32,8 @@ const Home = (): ReactNode => {
         background: {
             backgroundColor: color.BACKGROUND_LOW,
             minHeight: '100%',
-            padding: 16
+            paddingHorizontal: 16,
+            paddingVertical: 64
         },
         text: {
             color: color.TEXT_HIGH,
