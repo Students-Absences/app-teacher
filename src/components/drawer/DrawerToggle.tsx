@@ -1,5 +1,5 @@
-import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
+import useColor from '@/hooks/useColor';
 import React from 'react';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import {
@@ -14,6 +14,7 @@ import {
 } from '@react-navigation/native';
 
 const DrawerToggle = () => {
+    const color = useColor();
     const isDarkMode = useDarkMode();
 
     const hamburgerLogo = isDarkMode ?
@@ -31,8 +32,8 @@ const DrawerToggle = () => {
             height: 42
         },
         button: {
-            backgroundColor: isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST,
-            color: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
+            backgroundColor: color.BACKGROUND_HIGH,
+            color: color.TEXT_HIGH,
             marginLeft: 'auto'
         }
     });

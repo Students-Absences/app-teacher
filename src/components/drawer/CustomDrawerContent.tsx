@@ -4,15 +4,14 @@ import {
     DrawerItem,
     // DrawerItemList
 } from '@react-navigation/drawer';
-import Color from '@/Colors';
-import useDarkMode from '@/hooks/useDarkMode';
 import { DrawerActions } from '@react-navigation/native';
 import { ReactNode } from 'react';
 import DrawerItemProps from '@/types/DrawerItemProps';
 import useLocalization from '@/hooks/useLocalization';
+import useColor from '@/hooks/useColor';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
-    const isDarkMode = useDarkMode();
+    const color = useColor();
     const translator = useLocalization();
 
     const drawerItems: DrawerItemProps[] = [{
@@ -40,9 +39,9 @@ const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
 
     const focusedRouteIndex = props.navigation.getState().index;
     const drawerItemProps = {
-        activeBackgroundColor: isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST,
-        activeTintColor: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
-        inactiveTintColor: isDarkMode ? Color.TEXT_DARK_MEDIUM : Color.TEXT_LIGHT_MEDIUM
+        activeBackgroundColor: color.BACKGROUND_HIGH,
+        activeTintColor: color.TEXT_HIGH,
+        inactiveTintColor: color.TEXT_MEDIUM
     }
 
     return (

@@ -4,7 +4,6 @@ import {
     StyleSheet,
     View
 } from 'react-native';
-import Color from '@/Colors';
 import NavBar from '@/components/layout/NavBar';
 import useDarkMode from '@/hooks/useDarkMode';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,18 +11,17 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '@/screens/Home';
 import { ReactNode } from 'react';
 import CustomDrawerContent from '@/components/drawer/CustomDrawerContent';
-import DrawerItemProps from '@/types/DrawerItemProps';
-import useLocalization from '@/hooks/useLocalization';
+import useColor from '@/hooks/useColor';
 
 const App = (): ReactNode => {
     const isDarkMode = useDarkMode();
-    const translator = useLocalization();
+    const color = useColor();
 
     const Drawer = createDrawerNavigator();
 
     const styles = StyleSheet.create({
         background: {
-            backgroundColor: isDarkMode ? Color.BACKGROUND_DARKEST : Color.BACKGROUND_LIGHT,
+            backgroundColor: color.BACKGROUND_LOW,
             flex: 1
         }
     });
@@ -32,7 +30,7 @@ const App = (): ReactNode => {
         <SafeAreaView style={styles.background}>
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST}
+                backgroundColor={color.BACKGROUND_HIGH}
             />
             <NavigationContainer>
                 <NavBar />
@@ -42,7 +40,7 @@ const App = (): ReactNode => {
                     screenOptions={{
                         headerShown: false,
                         drawerStyle: {
-                            backgroundColor: isDarkMode ? Color.BACKGROUND_DARKER : Color.BACKGROUND_LIGHTER
+                            backgroundColor: color.BACKGROUND_MEDIUM
                         },
                         drawerPosition: 'right'
                     }}

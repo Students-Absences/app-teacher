@@ -4,19 +4,18 @@ import {
     Text,
     View
 } from 'react-native';
-import Color from '@/Colors';
-import useDarkMode from '@/hooks/useDarkMode';
 import { SCHOOL_LOGO, SCHOOL_NAME } from '@/Consts';
 import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode } from 'react';
+import useColor from '@/hooks/useColor';
 
 const NavBar = (): ReactNode => {
-    const isDarkMode = useDarkMode();
+    const color = useColor();
 
     const styles = StyleSheet.create({
         background: {
             alignItems: 'center',
-            backgroundColor: isDarkMode ? Color.BACKGROUND_DARK : Color.BACKGROUND_LIGHTEST,
+            backgroundColor: color.BACKGROUND_HIGH,
             display: 'flex',
             flexDirection: 'row',
             paddingHorizontal: 24,
@@ -28,7 +27,7 @@ const NavBar = (): ReactNode => {
             height: 45
         },
         text: {
-            color: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
+            color: color.TEXT_HIGH,
             fontSize: 24,
             fontWeight: 'bold',
             marginLeft: 16

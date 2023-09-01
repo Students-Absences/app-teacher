@@ -1,5 +1,4 @@
-import Color from '@/Colors';
-import useDarkMode from '@/hooks/useDarkMode';
+import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
 import { ReactNode } from 'react';
 import {
@@ -9,17 +8,17 @@ import {
 } from 'react-native';
 
 const Home = (props: any): ReactNode => {
-    const isDarkMode = useDarkMode();
+    const color = useColor();
     const translator = useLocalization();
 
     const styles = StyleSheet.create({
         background: {
-            backgroundColor: isDarkMode ? Color.BACKGROUND_DARKEST : Color.BACKGROUND_LIGHT,
+            backgroundColor: color.BACKGROUND_LOW,
             minHeight: '100%',
             padding: 16
         },
         text: {
-            color: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
+            color: color.TEXT_HIGH,
             fontSize: 18,
             lineHeight: 20,
             paddingVertical: 8
