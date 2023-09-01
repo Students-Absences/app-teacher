@@ -9,16 +9,21 @@ import useDarkMode from '@/hooks/useDarkMode';
 import { DrawerActions } from '@react-navigation/native';
 import { ReactNode } from 'react';
 import DrawerItemProps from '@/types/DrawerItemProps';
+import useLocalization from '@/hooks/useLocalization';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
     const isDarkMode = useDarkMode();
+    const translator = useLocalization();
 
     const drawerItems: DrawerItemProps[] = [{
-        key: 'Home',
-        label: 'Home'
+        key: 'home',
+        label: translator.get('LABEL_HOME')
     }, {
-        key: 'Home2',
-        label: 'Home2'
+        key: 'absences',
+        label: translator.get('LABEL_ABSENCES')
+    }, {
+        key: 'sync',
+        label: translator.get('LABEL_SYNC')
     }];
 
     /**

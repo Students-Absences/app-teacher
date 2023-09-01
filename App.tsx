@@ -13,9 +13,11 @@ import Home from '@/screens/Home';
 import { ReactNode } from 'react';
 import CustomDrawerContent from '@/components/drawer/CustomDrawerContent';
 import DrawerItemProps from '@/types/DrawerItemProps';
+import useLocalization from '@/hooks/useLocalization';
 
 const App = (): ReactNode => {
     const isDarkMode = useDarkMode();
+    const translator = useLocalization();
 
     const Drawer = createDrawerNavigator();
 
@@ -36,7 +38,7 @@ const App = (): ReactNode => {
                 <NavBar />
                 <Drawer.Navigator
                     detachInactiveScreens
-                    initialRouteName='Home'
+                    initialRouteName='home'
                     screenOptions={{
                         headerShown: false,
                         drawerStyle: {
@@ -46,8 +48,9 @@ const App = (): ReactNode => {
                     }}
                     drawerContent={(props) => <CustomDrawerContent {...props} />}
                 >
-                    <Drawer.Screen name='Home' component={Home} />
-                    <Drawer.Screen name='Home2' component={View} />
+                    <Drawer.Screen name='home' component={Home} />
+                    <Drawer.Screen name='absences' component={View} />
+                    <Drawer.Screen name='sync' component={View} />
                 </Drawer.Navigator>
             </NavigationContainer>
         </SafeAreaView>
