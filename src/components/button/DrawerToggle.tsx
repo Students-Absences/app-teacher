@@ -17,8 +17,8 @@ const DrawerToggle = () => {
     const isDarkMode = useDarkMode();
 
     const hamburgerLogo = isDarkMode ?
-        require('@/resources/hamburger-dark-theme.png') :
-        require('@/resources/hamburger-light-theme.png');
+        require('@/resources/images/hamburger-dark-theme.png') :
+        require('@/resources/images/hamburger-light-theme.png');
 
     const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
     const openDrawer = () => {
