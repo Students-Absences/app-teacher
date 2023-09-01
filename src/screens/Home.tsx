@@ -1,5 +1,6 @@
 import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
+import useLocalization from '@/hooks/useLocalization';
 import { ReactNode } from 'react';
 import {
     StyleSheet,
@@ -9,6 +10,7 @@ import {
 
 const Home = (props: any): ReactNode => {
     const isDarkMode = useDarkMode();
+    const translator = useLocalization();
 
     const styles = StyleSheet.create({
         background: {
@@ -26,8 +28,8 @@ const Home = (props: any): ReactNode => {
 
     return (
         <View style={styles.background}>
-            <Text style={styles.text}>Καλώς ήρθατε στην υπηρεσία διαχείρισης απουσιών του σχολείου μας.</Text>
-            <Text style={styles.text}>Για να πλοηγηθείτε στην εφαρμογή επιλέξτε κάποιον από τους παρακάτω διαθέσιμους συνδέσμους ή χρησιμοποιείστε το μενού.</Text>
+            <Text style={styles.text}>{translator.get('HOME_TEXT_WELCOME')}</Text>
+            <Text style={styles.text}>{translator.get('HOME_TEXT_NAVIGATE')}</Text>
         </View>
     );
 };

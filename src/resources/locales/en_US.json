@@ -1,4 +1,7 @@
 {
+    "HOME_TEXT_NAVIGATE": "To navigate to the app, select one of the links available below or use the menu.",
+    "HOME_TEXT_WELCOME": "Welcome to our school's absence management service.",
+
     "LABEL_HOME": "Home",
     "LABEL_ABSENCES": "Absences",
     "LABEL_SYNC": "Sync"

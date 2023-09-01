@@ -7,7 +7,7 @@ import {
 import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
 import { SCHOOL_LOGO, SCHOOL_NAME } from '@/Consts';
-import DrawerToggle from '@/components/button/DrawerToggle';
+import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode } from 'react';
 
 const NavBar = (): ReactNode => {

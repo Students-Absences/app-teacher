@@ -1,6 +1,6 @@
 interface DrawerItemProps {
-    label: string;
     key: string;
+    labelKey: string;
 };
 
 export default DrawerItemProps;

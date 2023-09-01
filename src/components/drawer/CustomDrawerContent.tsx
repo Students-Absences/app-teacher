@@ -2,7 +2,7 @@ import {
     DrawerContentComponentProps,
     DrawerContentScrollView,
     DrawerItem,
-    DrawerItemList
+    // DrawerItemList
 } from '@react-navigation/drawer';
 import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
@@ -17,13 +17,13 @@ const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
 
     const drawerItems: DrawerItemProps[] = [{
         key: 'home',
-        label: translator.get('LABEL_HOME')
+        labelKey:'LABEL_HOME'
     }, {
         key: 'absences',
-        label: translator.get('LABEL_ABSENCES')
+        labelKey:'LABEL_ABSENCES'
     }, {
         key: 'sync',
-        label: translator.get('LABEL_SYNC')
+        labelKey:'LABEL_SYNC'
     }];
 
     /**
@@ -51,7 +51,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
             {drawerItems.map((item, index) => (
                 <DrawerItem
                     key={item.key}
-                    label={item.label}
+                    label={translator.getCapitalized(item.labelKey)}
                     onPress={() => goTo(item.key)}
                     {...drawerItemProps}
                     focused={focusedRouteIndex === index}
