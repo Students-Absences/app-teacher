@@ -1,12 +1,13 @@
 import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
+import { ReactNode } from 'react';
 import {
     StyleSheet,
     Text,
     View
 } from 'react-native';
 
-const Home = (props: any): JSX.Element => {
+const Home = (props: any): ReactNode => {
     const isDarkMode = useDarkMode();
 
     const styles = StyleSheet.create({

@@ -8,8 +8,9 @@ import Color from '@/Colors';
 import useDarkMode from '@/hooks/useDarkMode';
 import { SCHOOL_LOGO, SCHOOL_NAME } from '@/Consts';
 import DrawerToggle from '@/components/button/DrawerToggle';
+import { ReactNode } from 'react';
 
-const NavBar = (): JSX.Element => {
+const NavBar = (): ReactNode => {
     const isDarkMode = useDarkMode();
 
     const styles = StyleSheet.create({
