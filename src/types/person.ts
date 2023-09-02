@@ -1,5 +1,5 @@
 /**
- * @description The interface for a person. This is used for the teacher and student entities.
+ * @description The interface for a person. This is used for the student entities.
  */
 interface person {
     id: string;
