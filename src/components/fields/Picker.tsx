@@ -1,7 +1,7 @@
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
 import listItem from '@/types/listItem';
-import pickerProps from '@/types/pickerProps';
+import pickerProps from '@/types/picker-props';
 import { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';

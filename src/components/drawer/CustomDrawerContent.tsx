@@ -8,7 +8,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { ReactNode } from 'react';
 import useLocalization from '@/hooks/useLocalization';
 import useColor from '@/hooks/useColor';
-import { ROUTES } from '@/Consts';
+import { ROUTES } from '@/_consts';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
     const color = useColor();

@@ -9,7 +9,7 @@ import route from '@/types/route';
 import Absences from '@/screens/Absences';
 import Home from '@/screens/Home';
 import Sync from '@/screens/Sync';
-import appSettings from './types/appSettings';
+import appSettings from './types/app-settings';
 import listItem from './types/listItem';
 
 export const API_URL: string = 'http://localhost:3000/api';

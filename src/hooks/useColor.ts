@@ -1,5 +1,5 @@
 import useDarkMode from '@/hooks/useDarkMode';
-import Color from '@/Colors';
+import Color from '@/_colors';
 
 const useColor = () => {
     const isDarkMode = useDarkMode();
