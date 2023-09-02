@@ -1,17 +1,19 @@
 import useColor from '@/hooks/useColor';
-import useLocalization from '@/hooks/useLocalization';
 import { ReactNode } from 'react';
 import {
     StyleSheet,
-    Text,
     View
 } from 'react-native';
 import { teachers } from '@/Consts';
 import Picker from '@/components/fields/Picker';
+import listItem from '@/types/listItem';
 
 const Absences = (): ReactNode => {
     const color = useColor();
-    const translator = useLocalization();
+
+    const teacherSelected = (item: listItem) => {
+        console.log(item.id);
+    };
 
     const styles = StyleSheet.create({
         background: {
@@ -34,7 +36,7 @@ const Absences = (): ReactNode => {
                 data={teachers}
                 defaultButtonTextKey='LABEL_TEACHERS_DEFAULT'
                 labelKey='LABEL_TEACHER'
-                onSelect={() => {}}
+                onSelect={teacherSelected}
             />
         </View>
     );
