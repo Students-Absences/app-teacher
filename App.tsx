@@ -1,22 +1,26 @@
 import {
     SafeAreaView,
     StatusBar,
-    StyleSheet,
-    View
+    StyleSheet
 } from 'react-native';
 import NavBar from '@/components/layout/NavBar';
 import useDarkMode from '@/hooks/useDarkMode';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Home from '@/screens/Home';
-import { ReactNode } from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 import CustomDrawerContent from '@/components/drawer/CustomDrawerContent';
 import useColor from '@/hooks/useColor';
 import { ROUTES } from '@/consts';
+import { initializeDb } from '@/data/database/db-service';
 
 const App = (): ReactNode => {
     const isDarkMode = useDarkMode();
     const color = useColor();
+
+    const initializeDbCallback = useCallback(initializeDb, []);
+    useEffect(() => {
+        initializeDbCallback();
+    }, [initializeDbCallback]);
 
     const Drawer = createDrawerNavigator();
 
