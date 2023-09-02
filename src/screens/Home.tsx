@@ -2,7 +2,7 @@ import { ROUTES } from '@/Consts';
 import Link from '@/buttons/Link';
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
-import Route from '@/types/Route';
+import route from '@/types/_route';
 import { ReactNode } from 'react';
 import {
     Pressable,
@@ -54,7 +54,7 @@ const Home = (): ReactNode => {
             <Text style={styles.text}>{translator.get('HOME_TEXT_WELCOME')}</Text>
             <Text style={styles.text}>{translator.get('HOME_TEXT_NAVIGATE')}</Text>
             <View style={styles.buttonsContainer}>
-                {ROUTES.slice(1).map((button: Route) => (
+                {ROUTES.slice(1).map((button: route) => (
                     <Link
                         key={button.routeKey}
                         routeKey={button.routeKey}

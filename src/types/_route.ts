@@ -1,7 +1,7 @@
-interface Route {
+interface route {
     routeKey: string;
     labelKey: string;
     screen?: any | undefined;
 };
 
-export default Route;
+export default route;

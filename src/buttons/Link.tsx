@@ -1,10 +1,10 @@
-import Route from '@/types/Route';
+import route from '@/types/_route';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { ReactNode } from 'react';
 import { Pressable } from 'react-native';
 
-const Link = (props: Route & {
+const Link = (props: route & {
     style?: any,
     children: ReactNode
 }) => {

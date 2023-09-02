@@ -5,7 +5,7 @@
  * @author Stratis Dermanoutsos
  */
 
-import Route from '@/types/Route';
+import route from '@/types/_route';
 import Absences from '@/screens/Absences';
 import Home from '@/screens/Home';
 import Sync from '@/screens/Sync';
@@ -16,7 +16,7 @@ export const API_URL: string = 'http://localhost:3000/api';
 export const SCHOOL_NAME: string = '5ο ΓΕΛ Βύρωνος';
 export const SCHOOL_LOGO: string = 'https://5lykeiovyrona.gr/img/logo-mobile.png';
 
-export const ROUTES: Route[] = [{
+export const ROUTES: route[] = [{
         routeKey: 'home',
         labelKey: 'LABEL_HOME',
         screen: Home
