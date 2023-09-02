@@ -1,4 +1,4 @@
-import listItem from '@/types/listItem';
+import listItem from '@/types/list-item';
 import { Platform, NativeModules } from 'react-native';
 
 const deviceLanguage = Platform.OS === 'ios' ?

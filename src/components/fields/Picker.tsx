@@ -1,6 +1,6 @@
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
-import listItem from '@/types/listItem';
+import listItem from '@/types/list-item';
 import pickerProps from '@/types/picker-props';
 import { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';

@@ -1,4 +1,4 @@
-import listItem from './listItem';
+import listItem from '@/types/list-item';
 
 interface pickerProps {
     data: listItem[];

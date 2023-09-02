@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { teachers } from '@/consts';
 import Picker from '@/components/fields/Picker';
-import listItem from '@/types/listItem';
+import listItem from '@/types/list-item';
 
 const Absences = (): ReactNode => {
     const color = useColor();

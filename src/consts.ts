@@ -10,7 +10,7 @@ import Absences from '@/screens/Absences';
 import Home from '@/screens/Home';
 import Sync from '@/screens/Sync';
 import appSettings from './types/app-settings';
-import listItem from './types/listItem';
+import listItem from '@/types/list-item';
 
 export const API_URL: string = 'http://localhost:3000/api';
 
