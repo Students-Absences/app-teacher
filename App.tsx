@@ -12,7 +12,7 @@ import Home from '@/screens/Home';
 import { ReactNode } from 'react';
 import CustomDrawerContent from '@/components/drawer/CustomDrawerContent';
 import useColor from '@/hooks/useColor';
-import { ROUTES } from '@/_consts';
+import { ROUTES } from '@/consts';
 
 const App = (): ReactNode => {
     const isDarkMode = useDarkMode();

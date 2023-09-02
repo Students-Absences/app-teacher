@@ -4,7 +4,7 @@ import {
     StyleSheet,
     View
 } from 'react-native';
-import { teachers } from '@/_consts';
+import { teachers } from '@/consts';
 import Picker from '@/components/fields/Picker';
 import listItem from '@/types/listItem';
 

@@ -1,4 +1,4 @@
-import { ROUTES } from '@/_consts';
+import { ROUTES } from '@/consts';
 import Link from '@/buttons/Link';
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';

@@ -4,7 +4,7 @@ import {
     Text,
     View
 } from 'react-native';
-import { settings } from '@/_consts';
+import { settings } from '@/consts';
 import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode } from 'react';
 import useColor from '@/hooks/useColor';
