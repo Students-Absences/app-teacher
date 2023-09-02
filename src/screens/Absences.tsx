@@ -6,6 +6,8 @@ import {
     Text,
     View
 } from 'react-native';
+import { teachers } from '@/Consts';
+import Picker from '@/components/fields/Picker';
 
 const Absences = (): ReactNode => {
     const color = useColor();
@@ -28,7 +30,12 @@ const Absences = (): ReactNode => {
 
     return (
         <View style={styles.background}>
-            <Text style={styles.text}>{translator.get('LABEL_ABSENCES')}</Text>
+            <Picker
+                data={teachers}
+                defaultButtonTextKey='LABEL_TEACHERS_DEFAULT'
+                labelKey='LABEL_TEACHER'
+                onSelect={() => {}}
+            />
         </View>
     );
 };

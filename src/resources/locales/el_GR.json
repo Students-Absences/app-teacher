@@ -4,5 +4,7 @@
 
     "LABEL_HOME": "Αρχική",
     "LABEL_ABSENCES": "Απουσίες",
-    "LABEL_SYNC": "Συγχρονισμός"
+    "LABEL_SYNC": "Συγχρονισμός",
+    "LABEL_TEACHER": "Καθηγητής",
+    "LABEL_TEACHERS_DEFAULT": "Επιλέξτε καθηγητή"
 }

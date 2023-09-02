@@ -4,7 +4,7 @@ import {
     Text,
     View
 } from 'react-native';
-import { SCHOOL_LOGO, SCHOOL_NAME } from '@/Consts';
+import { settings } from '@/Consts';
 import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode } from 'react';
 import useColor from '@/hooks/useColor';
@@ -38,9 +38,9 @@ const NavBar = (): ReactNode => {
         <View style={styles.background}>
             <Image
                 style={styles.logo}
-                source={{ uri: SCHOOL_LOGO }}
+                source={{ uri: settings.schoolLogoUrl }}
             />
-            <Text style={styles.text}>{SCHOOL_NAME}</Text>
+            <Text style={styles.text}>{settings.schoolName}</Text>
             <DrawerToggle />
         </View>
     );

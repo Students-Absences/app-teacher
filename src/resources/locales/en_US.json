@@ -4,5 +4,7 @@
 
     "LABEL_HOME": "Home",
     "LABEL_ABSENCES": "Absences",
-    "LABEL_SYNC": "Sync"
+    "LABEL_SYNC": "Sync",
+    "LABEL_TEACHER": "Teacher",
+    "LABEL_TEACHERS_DEFAULT": "Choose a teacher"
 }

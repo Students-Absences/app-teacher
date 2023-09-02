@@ -1,3 +1,4 @@
+import listItem from '@/types/listItem';
 import { Platform, NativeModules } from 'react-native';
 
 const deviceLanguage = Platform.OS === 'ios' ?
@@ -35,6 +36,18 @@ const useLocalization = () => {
     };
 
     /**
+     * Gets the label of the item, depending on the device's preferred language.
+     * 
+     * @param item The item to get the label of
+     * @returns The label of the item, depending on the device's preferred language
+     */
+    const getItem = (item: listItem): string => {
+        return deviceLanguage === 'el_GR' ?
+            item.label :
+            item.labelEn;
+    }
+
+    /**
      * Gets the string corresponding to the key from the locales object, without accents.
      * 
      * @param key The key of the string to get
@@ -54,7 +67,12 @@ const useLocalization = () => {
         return getNoAccents(key).toUpperCase();
     };
 
-    return { locales, get, getNoAccents, getCapitalized };
+    return {
+        get,
+        getItem,
+        getNoAccents,
+        getCapitalized
+    };
 };
 
 export default useLocalization;
