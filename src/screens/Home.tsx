@@ -1,8 +1,8 @@
+import { ROUTES } from '@/Consts';
+import Link from '@/buttons/Link';
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
 import Route from '@/types/Route';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { ReactNode } from 'react';
 import {
     Pressable,
@@ -14,19 +14,6 @@ import {
 const Home = (): ReactNode => {
     const color = useColor();
     const translator = useLocalization();
-    const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
-
-    const onPress = (key: string) => {
-        navigation.navigate(key);
-    };
-
-    const linkButtons: Route[] = [{
-        key: 'absences',
-        labelKey: 'LABEL_ABSENCES'
-    }, {
-        key: 'sync',
-        labelKey: 'LABEL_SYNC'
-    }]
 
     const styles = StyleSheet.create({
         background: {
@@ -67,14 +54,17 @@ const Home = (): ReactNode => {
             <Text style={styles.text}>{translator.get('HOME_TEXT_WELCOME')}</Text>
             <Text style={styles.text}>{translator.get('HOME_TEXT_NAVIGATE')}</Text>
             <View style={styles.buttonsContainer}>
-                {linkButtons.map((button: Route) => (
-                    <Pressable
-                        key={button.key}
-                        onPress={() => onPress(button.key)}
+                {ROUTES.slice(1).map((button: Route) => (
+                    <Link
+                        key={button.routeKey}
+                        routeKey={button.routeKey}
+                        labelKey={button.labelKey}
                         style={styles.button}
                     >
-                        <Text style={styles.buttonText}>{translator.get(button.labelKey)}</Text>
-                    </Pressable>
+                        <Text style={styles.buttonText}>
+                            {translator.get(button.labelKey)}
+                        </Text>
+                    </Link>
                 ))}
             </View>
         </View>

@@ -12,6 +12,7 @@ import Home from '@/screens/Home';
 import { ReactNode } from 'react';
 import CustomDrawerContent from '@/components/drawer/CustomDrawerContent';
 import useColor from '@/hooks/useColor';
+import { ROUTES } from '@/Consts';
 
 const App = (): ReactNode => {
     const isDarkMode = useDarkMode();
@@ -46,9 +47,9 @@ const App = (): ReactNode => {
                     }}
                     drawerContent={(props) => <CustomDrawerContent {...props} />}
                 >
-                    <Drawer.Screen name='home' component={Home} />
-                    <Drawer.Screen name='absences' component={View} />
-                    <Drawer.Screen name='sync' component={View} />
+                    {ROUTES.map(route => (
+                        <Drawer.Screen key={route.routeKey} name={route.routeKey} component={route.screen} />
+                    ))}
                 </Drawer.Navigator>
             </NavigationContainer>
         </SafeAreaView>

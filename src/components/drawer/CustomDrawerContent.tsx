@@ -6,32 +6,21 @@ import {
 } from '@react-navigation/drawer';
 import { DrawerActions } from '@react-navigation/native';
 import { ReactNode } from 'react';
-import Route from '@/types/Route';
 import useLocalization from '@/hooks/useLocalization';
 import useColor from '@/hooks/useColor';
+import { ROUTES } from '@/Consts';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
     const color = useColor();
     const translator = useLocalization();
 
-    const drawerItems: Route[] = [{
-        key: 'home',
-        labelKey:'LABEL_HOME'
-    }, {
-        key: 'absences',
-        labelKey:'LABEL_ABSENCES'
-    }, {
-        key: 'sync',
-        labelKey:'LABEL_SYNC'
-    }];
-
     /**
-     * Navigates to the screen with the given key.
+     * Navigates to the screen with the given routeKey.
      * 
-     * @param key The key of the screen to navigate to.
+     * @param routeKey The key of the screen to navigate to.
      */
-    const goTo = (key: string): void => {
-        props.navigation.navigate(key);
+    const goTo = (routeKey: string): void => {
+        props.navigation.navigate(routeKey);
 
         // Close drawer
         props.navigation.dispatch(DrawerActions.closeDrawer());
@@ -47,13 +36,19 @@ const CustomDrawerContent = (props: DrawerContentComponentProps): ReactNode => {
     return (
         <DrawerContentScrollView {...props}>
             {/* <DrawerItemList {...props} /> */}
-            {drawerItems.map((item, index) => (
+            {ROUTES.map((item, index) => (
                 <DrawerItem
-                    key={item.key}
+                    key={item.routeKey}
                     label={translator.getCapitalized(item.labelKey)}
-                    onPress={() => goTo(item.key)}
+                    onPress={() => goTo(item.routeKey)}
                     {...drawerItemProps}
                     focused={focusedRouteIndex === index}
+                    style={{
+                        borderRadius: 16,
+                        marginHorizontal: 16,
+                        marginVertical: 12,
+                        paddingHorizontal: 8
+                    }}
                 />))}
         </DrawerContentScrollView>
     );
