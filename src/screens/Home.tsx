@@ -2,7 +2,7 @@ import { ROUTES } from '@/Consts';
 import Link from '@/buttons/Link';
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
-import route from '@/types/_route';
+import route from '@/types/route';
 import { ReactNode } from 'react';
 import {
     Pressable,

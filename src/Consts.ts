@@ -5,7 +5,7 @@
  * @author Stratis Dermanoutsos
  */
 
-import route from '@/types/_route';
+import route from '@/types/route';
 import Absences from '@/screens/Absences';
 import Home from '@/screens/Home';
 import Sync from '@/screens/Sync';
