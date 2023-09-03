@@ -7,15 +7,17 @@ import {
 import Picker from '@/components/fields/Picker';
 import listItem from '@/types/list-item';
 import { getTeachers } from '@/data/helpers';
+import { useStore } from '@nanostores/react';
+import { $teachers } from '@/data/store/teachers';
 
 const Absences = (): ReactNode => {
-    const [teachers, setTeachers] = useState<listItem[]>([]);
-
     const color = useColor();
+
+    const teachers = useStore($teachers);
 
     useEffect(() => {
         // console.log('Absences mounted!'); //? debug
-        getTeachers(setTeachers);
+        getTeachers();
     }, []);
 
     const teacherSelected = (item: listItem) => {
