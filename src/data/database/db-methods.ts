@@ -2,6 +2,7 @@ import listItem from '@/types/list-item';
 import { ResultSet, SQLiteDatabase } from 'react-native-sqlite-storage';
 import { executeQuery } from '@/data/database/db-service';
 import table, { isListItem } from '@/data/enums/table';
+import appSettings from '@/types/app-settings';
 
 /**
  * Select all teachers and return them as a combo item array.
@@ -33,6 +34,30 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
     }
 
     return listItems;
+};
+
+export const getAppSettings = async (db: SQLiteDatabase): Promise<any> => {
+    let settings = {} as appSettings;
+
+    try {
+        const results = await executeQuery(db, 'SELECT_APPSETTINGS');
+        results.forEach(result => {
+            for (let index = 0; index < result.rows.length; index++) {
+                const item = result.rows.item(index);
+
+                settings = {
+                    schoolLogoUrl: item.SCHOOLLOGOURL,
+                    schoolName: item.SCHOOLNAME
+                };
+            }
+        });
+
+        // console.log(`App settings: ${appSettings}`); //? debug
+    } catch (error) {
+        console.error(error);
+    }
+
+    return settings;
 };
 
 /**

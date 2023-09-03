@@ -8,7 +8,7 @@ import {
     openDatabase
 } from 'react-native-sqlite-storage';
 import { createAllTables } from '@/data/database/db-methods';
-import table from '../enums/table';
+import table from '@/data/enums/table';
 
 enablePromise(true);
 
@@ -62,9 +62,7 @@ export const executeQuery = async (
 ): Promise<[ResultSet]> => {
     const json = require('@/resources/queries.json');
 
-    let queryString = json[queryKey];
-    if (queryKey.endsWith('_LISTITEM') && table)
-        queryString = queryString.replace('{table_name}', table);
+    let queryString = json[queryKey].replace('{table_name}', table);
 
     // console.log(`${queryKey} -> ${queryString}`); //? debug
 

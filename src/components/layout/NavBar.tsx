@@ -4,13 +4,22 @@ import {
     Text,
     View
 } from 'react-native';
-import { settings } from '@/consts';
 import DrawerToggle from '@/components/drawer/DrawerToggle';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import useColor from '@/hooks/useColor';
+import appSettings from '@/types/app-settings';
+import { getAppSettingsFromDb } from '@/data/helpers';
 
 const NavBar = (): ReactNode => {
     const color = useColor();
+
+    const [settings, setAppSettings] = useState<appSettings>({
+        schoolName: 'Students Absence'
+    });
+
+    useEffect(() => {
+        getAppSettingsFromDb(setAppSettings);
+    }, []);
 
     const styles = StyleSheet.create({
         background: {
@@ -36,10 +45,10 @@ const NavBar = (): ReactNode => {
 
     return (
         <View style={styles.background}>
-            <Image
+            {settings.schoolLogoUrl && <Image
                 style={styles.logo}
                 source={{ uri: settings.schoolLogoUrl }}
-            />
+            />}
             <Text style={styles.text}>{settings.schoolName}</Text>
             <DrawerToggle />
         </View>

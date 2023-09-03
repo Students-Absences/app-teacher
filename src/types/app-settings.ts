@@ -1,6 +1,6 @@
 interface appSettings {
     schoolName: string;
-    schoolLogoUrl: string;
+    schoolLogoUrl?: string;
 };
 
 export default appSettings;

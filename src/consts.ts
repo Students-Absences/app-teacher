@@ -32,9 +32,3 @@ export const ROUTES: route[] = [{
     labelKey: 'LABEL_SYNC',
     screen: Sync
 }];
-
-// TODO: Load from API (They should be set in the Admin webapp)
-export const settings: appSettings = {
-    schoolName: '5ο ΓΕΛ Βύρωνος',
-    schoolLogoUrl: 'https://5lykeiovyrona.gr/img/logo-mobile.png'
-};
