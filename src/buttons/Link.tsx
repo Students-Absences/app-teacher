@@ -11,7 +11,7 @@ const Link = (props: route & {
     const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 
     const goTo = () => {
-        console.log('Link.onPress', props.routeKey)
+        // console.log('Link.onPress', props.routeKey); //? DEBUG
         navigation.navigate(props.routeKey);
     };
 
