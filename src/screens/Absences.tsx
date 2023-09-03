@@ -1,15 +1,22 @@
 import useColor from '@/hooks/useColor';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
     StyleSheet,
     View
 } from 'react-native';
-import { teachers } from '@/consts';
 import Picker from '@/components/fields/Picker';
 import listItem from '@/types/list-item';
+import { getTeachers } from '@/data/helpers';
 
 const Absences = (): ReactNode => {
+    const [teachers, setTeachers] = useState<listItem[]>([]);
+
     const color = useColor();
+
+    useEffect(() => {
+        // console.log('Absences mounted!'); //? debug
+        getTeachers(setTeachers);
+    }, []);
 
     const teacherSelected = (item: listItem) => {
         console.log(item.id);
