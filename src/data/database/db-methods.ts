@@ -1,7 +1,7 @@
 import listItem from '@/types/list-item';
-import { SQLiteDatabase } from 'react-native-sqlite-storage';
+import { ResultSet, SQLiteDatabase } from 'react-native-sqlite-storage';
 import { executeQuery } from '@/data/database/db-service';
-import table from '@/data/enums/table';
+import table, { isListItem } from '@/data/enums/table';
 
 /**
  * Select all teachers and return them as a combo item array.
@@ -14,7 +14,7 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
     const listItems: listItem[] = [];
 
     try {
-        const results = await executeQuery(db, `SELECT_${table}`);
+        const results = await executeQuery(db, 'SELECT_LISTITEM', [], table);
         results.forEach(result => {
             for (let index = 0; index < result.rows.length; index++) {
                 const item = result.rows.item(index);
@@ -43,8 +43,12 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
  * @param entries The entries to be inserted.
  */
 export const insertData = async (db: SQLiteDatabase, table: table, entries: any[]): Promise<void> => {
+    let queryKey: string = isListItem[table] ?
+        'INSERT_LISTITEM' :
+        `INSERT_${table}`;
+
     try {
-        const promises = entries.map(entry => executeQuery(db, `INSERT_${table}`, Object.values(entry)));
+        const promises = entries.map(entry => executeQuery(db, queryKey, Object.values(entry), table));
 
         Promise.all(promises).then(values => {
             // console.log(`Inserted entries: ${entries}.`); //? debug
@@ -62,9 +66,18 @@ export const insertData = async (db: SQLiteDatabase, table: table, entries: any[
  * @returns {Promise<void>}
  */
 export const createAllTables = async (db: SQLiteDatabase): Promise<void> => {
+    const tableKeys = Object.keys(table) as (keyof typeof table)[];
+    const promises: Promise<[ResultSet]>[] = [];
+
     try {
-        const tableQueries = Object.values(table).map(table => `CREATE_${table}`);
-        const promises = tableQueries.map(queryKey => executeQuery(db, queryKey));
+        tableKeys.forEach(tableKey => {
+            const tableName = table[tableKey] as table;
+            let queryKey: string = isListItem[tableName] === 1 ?
+                'CREATE_LISTITEM' :
+                `CREATE_${tableName}`;
+
+            promises.push(executeQuery(db, queryKey, [], tableName));
+        });
 
         Promise.all(promises).then(values => {
             // console.log(`Created tables: ${tables}`); //? debug

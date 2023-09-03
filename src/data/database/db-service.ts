@@ -8,6 +8,7 @@ import {
     openDatabase
 } from 'react-native-sqlite-storage';
 import { createAllTables } from '@/data/database/db-methods';
+import table from '../enums/table';
 
 enablePromise(true);
 
@@ -49,19 +50,23 @@ export const initializeDb = async (): Promise<void> => {
  * @param db The database connection.
  * @param queryKey The query to be executed.
  * @param params The parameters to be passed to the query.
+ * @param table The table to be queried. If the query is a list item query, the table name must be passed.
  *
  * @returns {Promise<[ResultSet]>} The results of the query.
  */
 export const executeQuery = async (
     db: SQLiteDatabase,
     queryKey: string,
-    params: any[] = []
+    params: any[] = [],
+    table?: table | undefined
 ): Promise<[ResultSet]> => {
     const json = require('@/resources/queries.json');
 
-    const queryString = json[queryKey];
+    let queryString = json[queryKey];
+    if (queryKey.endsWith('_LISTITEM') && table)
+        queryString = queryString.replace('{table_name}', table);
 
-    console.log(`${queryKey} -> ${queryString}`); //? debug
+    // console.log(`${queryKey} -> ${queryString}`); //? debug
 
     return db.executeSql(queryString, params);
 };
