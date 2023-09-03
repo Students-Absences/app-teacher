@@ -61,7 +61,7 @@ export const executeQuery = async (
 
     const queryString = json[queryKey];
 
-    // console.log(queryString); //? debug
+    console.log(`${queryKey} -> ${queryString}`); //? debug
 
     return db.executeSql(queryString, params);
 };

@@ -44,7 +44,7 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
  */
 export const insertData = async (db: SQLiteDatabase, table: table, entries: any[]): Promise<void> => {
     try {
-        const promises = entries.map(entry => executeQuery(db, table, Object.values(entry)));
+        const promises = entries.map(entry => executeQuery(db, `INSERT_${table}`, Object.values(entry)));
 
         Promise.all(promises).then(values => {
             // console.log(`Inserted entries: ${entries}.`); //? debug
