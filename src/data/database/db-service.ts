@@ -24,7 +24,7 @@ const handleConnectionResult = {
  * 
  * @returns {Promise<SQLiteDatabase>} The database connection.
  */
-const getDbConnection = async (): Promise<SQLiteDatabase> => openDatabase({
+export const getDbConnection = async (): Promise<SQLiteDatabase> => openDatabase({
     name: DB_INFO.fileName,
     location: DB_INFO.location as Location
 }, handleConnectionResult.success, handleConnectionResult.error);
@@ -36,7 +36,7 @@ export const initializeDb = async (): Promise<void> => {
     try {
         const db = await getDbConnection();
 
-        createAllTables(db);
+        await createAllTables(db);
     } catch (error) {
         console.error(error);
     }

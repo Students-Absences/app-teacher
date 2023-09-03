@@ -1,5 +1,6 @@
 enum table {
     absences = 'ABSENCE',
+    appSettings = 'APPSETTINGS',
     assignments = 'ASSIGNMENT',
     classrooms = 'CLASSROOM',
     reasons = 'REASON',

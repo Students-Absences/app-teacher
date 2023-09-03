@@ -5,7 +5,6 @@ import useLocalization from '@/hooks/useLocalization';
 import route from '@/types/route';
 import { ReactNode } from 'react';
 import {
-    Pressable,
     StyleSheet,
     Text,
     View
@@ -72,3 +71,4 @@ const Home = (): ReactNode => {
 };
 
 export default Home;
+

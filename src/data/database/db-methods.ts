@@ -36,6 +36,25 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
 };
 
 /**
+ * Insert data into the table provided.
+ * 
+ * @param db Τhe database connection.
+ * @param table The table to be queried.
+ * @param entries The entries to be inserted.
+ */
+export const insertData = async (db: SQLiteDatabase, table: table, entries: any[]): Promise<void> => {
+    try {
+        const promises = entries.map(entry => executeQuery(db, table, Object.values(entry)));
+
+        Promise.all(promises).then(values => {
+            // console.log(`Inserted entries: ${entries}.`); //? debug
+        });
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+/**
  * Create all tables.
  * 
  * @param db The database connection.
@@ -44,7 +63,7 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
  */
 export const createAllTables = async (db: SQLiteDatabase): Promise<void> => {
     try {
-        const tableQueries = Object.values(table).map(table => `CREATE_TABLE_${table}`);
+        const tableQueries = Object.values(table).map(table => `CREATE_${table}`);
         const promises = tableQueries.map(queryKey => executeQuery(db, queryKey));
 
         Promise.all(promises).then(values => {
