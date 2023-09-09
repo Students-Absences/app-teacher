@@ -5,7 +5,7 @@ import {
     View
 } from 'react-native';
 import Picker from '@/components/fields/Picker';
-import listItem from '@/types/list-item';
+import listItem from '@/data/types/list-item';
 import { getTeachers } from '@/data/helpers';
 import { useStore } from '@nanostores/react';
 import { $teachers } from '@/data/store/teachers';

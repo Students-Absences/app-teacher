@@ -1,4 +1,4 @@
-import listItem from '@/types/list-item';
+import listItem from '@/data/types/list-item';
 import { atom } from 'nanostores'
 
 export const $teachers = atom<listItem[]>([])

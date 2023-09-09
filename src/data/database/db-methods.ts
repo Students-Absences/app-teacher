@@ -1,8 +1,8 @@
-import listItem from '@/types/list-item';
+import listItem from '@/data/types/list-item';
 import { ResultSet, SQLiteDatabase } from 'react-native-sqlite-storage';
 import { executeQuery } from '@/data/database/db-service';
 import table, { isListItem } from '@/data/enums/table';
-import appSettings from '@/types/app-settings';
+import appSettings from '@/data/types/app-settings';
 
 /**
  * Select all teachers and return them as a combo item array.

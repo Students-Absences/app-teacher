@@ -1,4 +1,4 @@
-import route from '@/types/route';
+import route from '@/data/types/route';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { ReactNode } from 'react';

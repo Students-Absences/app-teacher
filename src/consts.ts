@@ -5,12 +5,11 @@
  * @author Stratis Dermanoutsos
  */
 
-import route from '@/types/route';
+import route from '@/data/types/route';
 import Absences from '@/screens/Absences';
 import Home from '@/screens/Home';
 import Sync from '@/screens/Sync';
-import appSettings from '@/types/app-settings';
-import dbInfo from '@/types/db-info';
+import dbInfo from '@/data/types/db-info';
 
 export const API_URL: string = 'http://localhost:3000/api';
 

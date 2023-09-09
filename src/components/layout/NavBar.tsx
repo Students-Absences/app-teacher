@@ -7,7 +7,7 @@ import {
 import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode, useEffect, useState } from 'react';
 import useColor from '@/hooks/useColor';
-import appSettings from '@/types/app-settings';
+import appSettings from '@/data/types/app-settings';
 import { getAppSettingsFromDb } from '@/data/helpers';
 
 const NavBar = (): ReactNode => {
