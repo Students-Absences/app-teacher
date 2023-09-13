@@ -36,6 +36,36 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
     return listItems;
 };
 
+export const getAbsences = async (db: SQLiteDatabase): Promise<any> => {
+    let absences: absence[] = [];
+
+    try {
+        const results = await executeQuery(db, 'SELECT_ABSENCE');
+        results.forEach(result => {
+            for (let index = 0; index < result.rows.length; index++) {
+                const item = result.rows.item(index);
+
+                absences.push({
+                    id: item.ID,
+                    minute: item.MINUTE,
+                    hour: item.HOUR,
+                    day: item.DAY,
+                    month: item.MONTH,
+                    year: item.YEAR,
+                    studentId: item.STUDENTID,
+                    assignmentId: item.ASSIGNMENTID
+                } as absence);
+            }
+        });
+
+        // console.log(`Absences count: ${absences.length}`); //? debug
+    } catch (error) {
+        console.error(error);
+    }
+
+    return absences;
+};
+
 export const getAppSettings = async (db: SQLiteDatabase): Promise<any> => {
     let settings = {} as appSettings;
 
@@ -84,7 +114,7 @@ export const insertData = async (db: SQLiteDatabase, table: table, entries: any[
 };
 
 /**
- * Create all tables.
+ * Creates all tables.
  * 
  * @param db The database connection.
  *
@@ -106,6 +136,26 @@ export const createAllTables = async (db: SQLiteDatabase): Promise<void> => {
 
         Promise.all(promises).then(values => {
             // console.log(`Created tables: ${tables}`); //? debug
+        });
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const dropAllTables = async (db: SQLiteDatabase): Promise<void> => {
+    const tableKeys = Object.keys(table) as (keyof typeof table)[];
+    const promises: Promise<[ResultSet]>[] = [];
+
+    try {
+        tableKeys.forEach(tableKey => {
+            const tableName = table[tableKey] as table;
+            const queryKey = 'DROP_TABLE';
+
+            promises.push(executeQuery(db, queryKey, [], tableName));
+        });
+
+        Promise.all(promises).then(values => {
+            // console.log(`Dropped tables: ${tableKeys}`); //? debug
         });
     } catch (error) {
         console.error(error);

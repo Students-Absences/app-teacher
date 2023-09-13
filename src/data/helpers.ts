@@ -35,3 +35,38 @@ export const getAppSettingsFromDb = async (setSettings: React.Dispatch<React.Set
         console.error(error);
     }
 };
+
+/**
+ * Formats the date from an absence into a string that can be sent to the API.
+ * 
+ * @param absence The absence to get the date from.
+ * @returns The date in the format YYYY-MM-DDTHH:MM:SS.000Z
+ */
+export const absenceDate = (absence: absence): string => {
+    return `${
+        paddedString(absence.year)
+    }-${
+        paddedString(absence.month)
+    }-${
+        paddedString(absence.day)
+    }T${
+        paddedString(absence.hour)
+    }:${
+        paddedString(absence.minute)
+    }:00.000Z`;
+};
+
+/**
+ * Pads a number with a leading zero if it is less than 10.
+ * 
+ * @param value The number to pad.
+ * @returns The padded string.
+ * 
+ * @example
+ * paddedString(1) // returns '01'
+ * paddedString(10) // returns '10'
+ * paddedString(100) // returns '100'
+ */
+const paddedString = (value: number): string => {
+    return value.toString().padStart(2, '0');
+}

@@ -7,7 +7,7 @@ import {
     enablePromise,
     openDatabase
 } from 'react-native-sqlite-storage';
-import { createAllTables } from '@/data/database/db-methods';
+import { createAllTables, dropAllTables } from '@/data/database/db-methods';
 import table from '@/data/enums/table';
 
 enablePromise(true);
@@ -37,6 +37,7 @@ export const initializeDb = async (): Promise<void> => {
     try {
         const db = await getDbConnection();
 
+        // await dropAllTables(db);
         await createAllTables(db);
     } catch (error) {
         console.error(error);
