@@ -97,7 +97,7 @@ export const getAppSettings = async (db: SQLiteDatabase): Promise<any> => {
  * @param table The table to be queried.
  * @param entries The entries to be inserted.
  */
-export const insertData = async (db: SQLiteDatabase, table: table, entries: any[]): Promise<void> => {
+export const insertData = (db: SQLiteDatabase, table: table, entries: any[]): void => {
     let queryKey: string = isListItem[table] ?
         'INSERT_LISTITEM' :
         `INSERT_${table}`;
@@ -142,14 +142,41 @@ export const createAllTables = async (db: SQLiteDatabase): Promise<void> => {
     }
 };
 
-export const dropAllTables = async (db: SQLiteDatabase): Promise<void> => {
+/**
+ * Drops all tables.
+ * 
+ * @param db The database connection.
+ *
+ * @returns {Promise<void>}
+ */
+export const dropAllTables = (db: SQLiteDatabase): void => {
+    doForAllTables(db, 'DROP_TABLE');
+};
+
+/**
+ * Deletes all tables' data.
+ * 
+ * @param db The database connection.
+ *
+ * @returns {Promise<void>}
+ */
+export const deleteFromAllTables = (db: SQLiteDatabase): void => {
+    doForAllTables(db, 'DELETE_FROM');
+};
+
+/**
+ * Executes a query for all tables.
+ * 
+ * @param db The database connection.
+ * @param queryKey The query key to be used. (DROP_TABLE | DELETE_FROM)
+ */
+const doForAllTables = async (db: SQLiteDatabase, queryKey: string): Promise<void> => {
     const tableKeys = Object.keys(table) as (keyof typeof table)[];
     const promises: Promise<[ResultSet]>[] = [];
 
     try {
         tableKeys.forEach(tableKey => {
             const tableName = table[tableKey] as table;
-            const queryKey = 'DROP_TABLE';
 
             promises.push(executeQuery(db, queryKey, [], tableName));
         });

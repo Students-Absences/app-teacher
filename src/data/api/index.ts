@@ -1,12 +1,19 @@
 import axios from 'axios';
-import { getAbsences } from '@/data/database/db-methods';
+import { deleteFromAllTables, getAbsences, insertData } from '@/data/database/db-methods';
 import { getDbConnection } from '@/data/database/db-service';
 import sync from '@/data/types/sync';
 import { absenceDate } from '@/data/helpers';
+import table from '@/data/enums/table';
 
 axios.defaults.baseURL = 'http://10.0.2.2:5231/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
+/**
+ * Syncs the local database to the API.
+ * Then, repopulates the local database with the API's response.
+ * 
+ * @returns sync object
+ */
 const syncToApi = async (): Promise<sync> => {
     let syncData = {} as sync;
 
@@ -24,12 +31,27 @@ const syncToApi = async (): Promise<sync> => {
         // console.log(data); //? debug
 
         axios.post('/sync', data)
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                const syncData = response.data as sync;
+                console.log(syncData); //? debug
+
+                // Clear all tables
+                deleteFromAllTables(db);
+
+                // Repopulate tables with response data
+                insertData(db, table.appSettings, [syncData.appSettings]);
+                insertData(db, table.assignments, syncData.assignments);
+                insertData(db, table.classrooms, syncData.classrooms);
+                insertData(db, table.students, syncData.students);
+                insertData(db, table.studentClassrooms, syncData.studentClassrooms);
+                insertData(db, table.subjects, syncData.subjects);
+                insertData(db, table.teachers, syncData.teachers);
+
+                // TODO: Update state
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
     } catch (error) {
         console.error(error);
     } finally {
