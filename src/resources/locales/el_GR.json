@@ -6,5 +6,8 @@
     "LABEL_ABSENCES": "Απουσίες",
     "LABEL_SYNC": "Συγχρονισμός",
     "LABEL_TEACHER": "Καθηγητής",
-    "LABEL_TEACHERS_DEFAULT": "Επιλέξτε καθηγητή"
+    "LABEL_TEACHERS_DEFAULT": "Επιλέξτε καθηγητή",
+
+    "NOTIFICATION_SYNC_ERROR": "Ο συγχρονισμός απέτυχε!",
+    "NOTIFICATION_SYNC_SUCCESS": "Επιτυχής συγχρονισμός!"
 }

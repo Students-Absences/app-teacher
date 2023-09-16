@@ -32,8 +32,8 @@ const syncToApi = async (): Promise<sync> => {
 
         axios.post('/sync', data)
             .then(function (response) {
-                const syncData = response.data as sync;
-                console.log(syncData); //? debug
+                syncData = response.data as sync;
+                // console.log(syncData); //? debug
 
                 // Clear all tables
                 deleteFromAllTables(db);
@@ -50,12 +50,13 @@ const syncToApi = async (): Promise<sync> => {
                 // TODO: Update state
             })
             .catch(function (error) {
-                console.error(error);
+                throw error;
             });
-    } catch (error) {
-        console.error(error);
-    } finally {
+
         return syncData;
+    } catch (error) {
+        // console.error(error); //? debug
+        throw error;
     }
 };
 

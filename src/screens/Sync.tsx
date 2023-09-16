@@ -6,12 +6,34 @@ import {
     Pressable,
     StyleSheet,
     Text,
+    ToastAndroid,
     View
 } from 'react-native';
 
 const Sync = (): ReactNode => {
     const color = useColor();
     const translator = useLocalization();
+
+    /**
+     * Syncs the local data to the API.
+     * Then, notifies the user of the result.
+     * 
+     * @returns
+     */
+    const onSync = () => {
+        syncToApi()
+            .then(() => {
+                ToastAndroid.show(
+                    translator.get('NOTIFICATION_SYNC_SUCCESS'),
+                    ToastAndroid.SHORT
+                )
+            }).catch(() => {
+                ToastAndroid.show(
+                    translator.get('NOTIFICATION_SYNC_ERROR'),
+                    ToastAndroid.SHORT
+                )
+            });
+    };
 
     const styles = StyleSheet.create({
         background: {
@@ -44,7 +66,7 @@ const Sync = (): ReactNode => {
     return (
         <View style={styles.background}>
             <Pressable
-                onPress={syncToApi}
+                onPress={onSync}
                 style={styles.button}
             >
                 <Text style={styles.buttonText}>{translator.get('LABEL_SYNC')}</Text>
