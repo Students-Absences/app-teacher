@@ -21,7 +21,7 @@ const Absences = (): ReactNode => {
     }, []);
 
     const teacherSelected = (item: listItem) => {
-        console.log(item.id);
+        console.log(item.id); // TODO
     };
 
     const styles = StyleSheet.create({
