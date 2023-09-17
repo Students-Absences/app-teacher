@@ -4,6 +4,8 @@
 
     "LABEL_HOME": "Home",
     "LABEL_ABSENCES": "Absences",
+    "LABEL_ASSIGNMENT": "Assignment",
+    "LABEL_ASSIGNMENT_DEFAULT": "Choose an assignment",
     "LABEL_SYNC": "Sync",
     "LABEL_TEACHER": "Teacher",
     "LABEL_TEACHERS_DEFAULT": "Choose a teacher",

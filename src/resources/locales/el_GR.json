@@ -4,6 +4,8 @@
 
     "LABEL_HOME": "Αρχική",
     "LABEL_ABSENCES": "Απουσίες",
+    "LABEL_ASSIGNMENT": "Ανάθεση",
+    "LABEL_ASSIGNMENT_DEFAULT": "Επιλέξτε ανάθεση",
     "LABEL_SYNC": "Συγχρονισμός",
     "LABEL_TEACHER": "Καθηγητής",
     "LABEL_TEACHERS_DEFAULT": "Επιλέξτε καθηγητή",

@@ -1,11 +1,13 @@
 import {
     getAppSettings as getAppSettingsFromDb,
-    getListItems
+    getListItems,
+    getTeacherAssignments
 } from '@/data/database/db-methods';
 import { getDbConnection } from '@/data/database/db-service';
 import table from '@/data/enums/table';
 import { setTeachers } from '@/data/store/teachers';
 import { setSettings } from '@/data/store/settings';
+import { setAssignments } from '@/data/store/assignments';
 
 /**
  * Gets the list of teachers from the database and updates the state of the component calling it.
@@ -34,6 +36,23 @@ export const getAppSettings = async (): Promise<void> => {
         const settingsFromDb = await getAppSettingsFromDb(db);
         // console.log('Settings: ' + settingsFromDb); //? debug
         setSettings(settingsFromDb);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+/**
+ * Gets the assignments for a teacher from the database and updates the state of the component calling it.
+ * 
+ * @param teacherId The teacher's id.
+ */
+export const getAssignmentsForTeacher = async (teacherId: number): Promise<any> => {
+    try {
+        const db = await getDbConnection();
+
+        const assignmentsFromDb = await getTeacherAssignments(db, teacherId);
+        // console.log('Assignments: ' + assignmentsFromDb); //? debug
+        setAssignments(assignmentsFromDb);
     } catch (error) {
         console.error(error);
     }

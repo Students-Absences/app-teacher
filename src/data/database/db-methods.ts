@@ -91,6 +91,39 @@ export const getAppSettings = async (db: SQLiteDatabase): Promise<any> => {
 };
 
 /**
+ * Selects all assignments for teacher with the given id.
+ *
+ * @param db The database connection.
+ * @param teacherId The teacher's id.
+ *
+ * @returns {Promise<SelectItem[]>} All the teacher's assignments.
+ */
+export const getTeacherAssignments = async (db: SQLiteDatabase, teacherId: number): Promise<listItem[]> => {
+    const listItems: listItem[] = [];
+
+    try {
+        const results = await executeQuery(db, 'SELECT_ASSIGNMENTS_FOR_TEACHER', [teacherId]);
+        results.forEach(result => {
+            for (let index = 0; index < result.rows.length; index++) {
+                const item = result.rows.item(index);
+
+                listItems.push({
+                    id: item.ID,
+                    label: item.LABEL,
+                    labelEn: item.LABELEN
+                } as listItem);
+            }
+        });
+
+        // console.log(`List: ${listItems}`); //? debug
+    } catch (error) {
+        console.error(error);
+    }
+
+    return listItems;
+};
+
+/**
  * Insert data into the table provided.
  * 
  * @param db Τhe database connection.
