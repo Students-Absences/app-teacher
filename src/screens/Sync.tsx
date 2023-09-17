@@ -21,7 +21,7 @@ const Sync = (): ReactNode => {
      * @returns {void}
      */
     const onSync = (): void => {
-        syncToApi()
+        syncToApi(0, '') // TODO: Get the real data from input
             .then(() => {
                 showToast(translator.get('NOTIFICATION_SYNC_SUCCESS'));
             }).catch(() => {

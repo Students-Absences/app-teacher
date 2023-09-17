@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { deleteFromAllTables, getAbsences, insertData } from '@/data/database/db-methods';
 import { getDbConnection } from '@/data/database/db-service';
-import sync from '@/data/types/sync';
+import absence from '@/data/types/absence';
+import syncIn from '@/data/types/sync-in';
+import syncOut, { absenceBackend } from '@/data/types/sync-out';
 import { absenceDate, getAppSettings, getTeachers, showToast } from '@/data/helpers';
 import table from '@/data/enums/table';
 
@@ -12,27 +14,34 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
  * Syncs the local database to the API.
  * Then, repopulates the local database with the API's response.
  * 
+ * @param teacherId The teacher's id.
+ * @param teacherPin The teacher's pin.
+ * 
  * @returns sync object
  */
-const syncToApi = async (): Promise<sync> => {
-    let syncData = {} as sync;
+const syncToApi = async (teacherId: number, teacherPin: string): Promise<syncIn> => {
+    let syncData = {} as syncIn;
 
     try {
         const db = await getDbConnection();
 
         const absences: absence[] = await getAbsences(db);
-        const data = JSON.stringify(absences.map(absence => {
-            return {
-                studentId: absence.studentId,
-                assignmentId: absence.assignmentId,
-                dateIn: absenceDate(absence)
-            };
-        }));
+        const data = JSON.stringify({
+            teacherId: teacherId,
+            teacherPin: teacherPin,
+            absences: absences.map(absence => {
+                return {
+                    studentId: absence.studentId,
+                    assignmentId: absence.assignmentId,
+                    dateIn: absenceDate(absence)
+                } as absenceBackend;
+            })
+        } as syncOut);
         // console.log(data); //? debug
 
         axios.post('/sync', data)
             .then(function (response) {
-                syncData = response.data as sync;
+                syncData = response.data as syncIn;
                 // console.log(syncData); //? debug
 
                 // Clear all tables

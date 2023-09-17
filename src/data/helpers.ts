@@ -6,6 +6,7 @@ import {
 } from '@/data/database/db-methods';
 import { getDbConnection } from '@/data/database/db-service';
 import table from '@/data/enums/table';
+import absence from '@/data/types/absence';
 import { setTeachers } from '@/data/store/teachers';
 import { setSettings } from '@/data/store/settings';
 import { setAssignments } from '@/data/store/assignments';

@@ -2,6 +2,7 @@ import listItem from '@/data/types/list-item';
 import { ResultSet, SQLiteDatabase } from 'react-native-sqlite-storage';
 import { executeQuery } from '@/data/database/db-service';
 import table, { isListItem } from '@/data/enums/table';
+import absence from '@/data/types/absence';
 import appSettings from '@/data/types/app-settings';
 import person from '@/data/types/person';
 

@@ -4,7 +4,12 @@ import listItem from '@/data/types/list-item';
 import person from '@/data/types/person';
 import studentClassroom from '@/data/types/student-classroom';
 
-interface sync {
+/**
+ * References API's SyncOut class.
+ * 
+ * Reverted name for obvious reasons.
+ */
+interface syncIn {
     appSettings: appSettings;
     assignments: assignment[];
     classrooms: listItem[];
@@ -14,4 +19,4 @@ interface sync {
     teachers: listItem[];
 };
 
-export default sync;
+export default syncIn;
