@@ -1,5 +1,6 @@
 import {
     getAppSettings as getAppSettingsFromDb,
+    getAssignmentStudents,
     getListItems,
     getTeacherAssignments
 } from '@/data/database/db-methods';
@@ -11,6 +12,8 @@ import { setAssignments } from '@/data/store/assignments';
 
 /**
  * Gets the list of teachers from the database and updates the state of the component calling it.
+ * 
+ * @returns {Promise<void>}
  */
 export const getTeachers = async (): Promise<void> => {
     try {
@@ -27,7 +30,7 @@ export const getTeachers = async (): Promise<void> => {
 /**
  * Gets the app's settings from the database and updates the state of the component calling it.
  * 
- * @param setSettings State setter function for app's settings
+ * @returns {Promise<void>}
  */
 export const getAppSettings = async (): Promise<void> => {
     try {
@@ -45,8 +48,10 @@ export const getAppSettings = async (): Promise<void> => {
  * Gets the assignments for a teacher from the database and updates the state of the component calling it.
  * 
  * @param teacherId The teacher's id.
+ * 
+ * @returns {Promise<void>}
  */
-export const getAssignmentsForTeacher = async (teacherId: number): Promise<any> => {
+export const getAssignmentsForTeacher = async (teacherId: number): Promise<void> => {
     try {
         const db = await getDbConnection();
 
@@ -59,9 +64,29 @@ export const getAssignmentsForTeacher = async (teacherId: number): Promise<any> 
 };
 
 /**
+ * Gets the students for an assignment from the database and updates the state of the component calling it.
+ * 
+ * @param assignmentId The assignment's id.
+ * 
+ * @returns {Promise<void>}
+ */
+export const getStudentsForAssignment = async (assignmentId: number): Promise<void> => {
+    try {
+        const db = await getDbConnection();
+
+        const studentsFromDb = await getAssignmentStudents(db, assignmentId);
+        // console.log('Students: ' + studentsFromDb); //? debug
+        // setStudents(studentsFromDb); // TODO: Implement
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+/**
  * Formats the date from an absence into a string that can be sent to the API.
  * 
  * @param absence The absence to get the date from.
+ * 
  * @returns The date in the format YYYY-MM-DDTHH:MM:SS.000Z
  */
 export const absenceDate = (absence: absence): string => {
@@ -82,6 +107,7 @@ export const absenceDate = (absence: absence): string => {
  * Pads a number with a leading zero if it is less than 10.
  * 
  * @param value The number to pad.
+ * 
  * @returns The padded string.
  * 
  * @example

@@ -3,13 +3,14 @@ import { ResultSet, SQLiteDatabase } from 'react-native-sqlite-storage';
 import { executeQuery } from '@/data/database/db-service';
 import table, { isListItem } from '@/data/enums/table';
 import appSettings from '@/data/types/app-settings';
+import person from '@/data/types/person';
 
 /**
  * Select all teachers and return them as a combo item array.
  *
  * @param db The database connection.
  *
- * @returns {Promise<SelectItem[]>} All the teachers.
+ * @returns {Promise<listItem[]>} All the teachers.
  */
 export const getListItems = async (db: SQLiteDatabase, table: table): Promise<listItem[]> => {
     const listItems: listItem[] = [];
@@ -36,7 +37,14 @@ export const getListItems = async (db: SQLiteDatabase, table: table): Promise<li
     return listItems;
 };
 
-export const getAbsences = async (db: SQLiteDatabase): Promise<any> => {
+/**
+ * Selects all absences and returns them.
+ * 
+ * @param db The database connection.
+ * 
+ * @returns {Promise<absence[]>}
+ */
+export const getAbsences = async (db: SQLiteDatabase): Promise<absence[]> => {
     let absences: absence[] = [];
 
     try {
@@ -66,7 +74,14 @@ export const getAbsences = async (db: SQLiteDatabase): Promise<any> => {
     return absences;
 };
 
-export const getAppSettings = async (db: SQLiteDatabase): Promise<any> => {
+/**
+ * Selects the app's settings and returns them.
+ * 
+ * @param db The database connection.
+ * 
+ * @returns {Promise<appSettings>}
+ */
+export const getAppSettings = async (db: SQLiteDatabase): Promise<appSettings> => {
     let settings = {} as appSettings;
 
     try {
@@ -96,7 +111,7 @@ export const getAppSettings = async (db: SQLiteDatabase): Promise<any> => {
  * @param db The database connection.
  * @param teacherId The teacher's id.
  *
- * @returns {Promise<SelectItem[]>} All the teacher's assignments.
+ * @returns {Promise<listItem[]>} All the teacher's assignments.
  */
 export const getTeacherAssignments = async (db: SQLiteDatabase, teacherId: number): Promise<listItem[]> => {
     const listItems: listItem[] = [];
@@ -124,11 +139,46 @@ export const getTeacherAssignments = async (db: SQLiteDatabase, teacherId: numbe
 };
 
 /**
+ * Selects all students for assignment's classroom with the given id.
+ * 
+ * @param db The database connection.
+ * @param assignmentId The assignment's id.
+ * 
+ * @returns {Promise<person[]>} All the assignment's students.
+ */
+export const getAssignmentStudents = async (db: SQLiteDatabase, assignmentId: number): Promise<person[]> => {
+    const students: person[] = [];
+
+    try {
+        const results = await executeQuery(db, 'SELECT_STUDENTS_FOR_ASSIGNMENT', [assignmentId]);
+        results.forEach(result => {
+            for (let index = 0; index < result.rows.length; index++) {
+                const item = result.rows.item(index);
+
+                students.push({
+                    id: item.ID,
+                    firstName: item.FIRSTNAME,
+                    lastName: item.LASTNAME
+                } as person);
+            }
+        });
+
+        // console.log(`List: ${students}`); //? debug
+    } catch (error) {
+        console.error(error);
+    }
+
+    return students;
+};
+
+/**
  * Insert data into the table provided.
  * 
  * @param db Τhe database connection.
  * @param table The table to be queried.
  * @param entries The entries to be inserted.
+ * 
+ * @returns {void}
  */
 export const insertData = (db: SQLiteDatabase, table: table, entries: any[]): void => {
     let queryKey: string = isListItem[table] ?
@@ -150,7 +200,7 @@ export const insertData = (db: SQLiteDatabase, table: table, entries: any[]): vo
  * Creates all tables.
  * 
  * @param db The database connection.
- *
+ * 
  * @returns {Promise<void>}
  */
 export const createAllTables = async (db: SQLiteDatabase): Promise<void> => {
@@ -179,8 +229,8 @@ export const createAllTables = async (db: SQLiteDatabase): Promise<void> => {
  * Drops all tables.
  * 
  * @param db The database connection.
- *
- * @returns {Promise<void>}
+ * 
+ * @returns {void}
  */
 export const dropAllTables = (db: SQLiteDatabase): void => {
     doForAllTables(db, 'DROP_TABLE');
@@ -191,7 +241,7 @@ export const dropAllTables = (db: SQLiteDatabase): void => {
  * 
  * @param db The database connection.
  *
- * @returns {Promise<void>}
+ * @returns {void}
  */
 export const deleteFromAllTables = (db: SQLiteDatabase): void => {
     doForAllTables(db, 'DELETE_FROM');
@@ -202,6 +252,8 @@ export const deleteFromAllTables = (db: SQLiteDatabase): void => {
  * 
  * @param db The database connection.
  * @param queryKey The query key to be used. (DROP_TABLE | DELETE_FROM)
+ * 
+ * @returns {Promise<void>}
  */
 const doForAllTables = async (db: SQLiteDatabase, queryKey: string): Promise<void> => {
     const tableKeys = Object.keys(table) as (keyof typeof table)[];
