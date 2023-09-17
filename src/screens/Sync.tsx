@@ -1,8 +1,12 @@
+import Picker from '@/components/fields/Picker';
 import syncToApi from '@/data/api';
-import { showToast } from '@/data/helpers';
+import { getTeachers, showToast } from '@/data/helpers';
+import { $teachers } from '@/data/store/teachers';
+import listItem from '@/data/types/list-item';
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
-import { ReactNode } from 'react';
+import { useStore } from '@nanostores/react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
     Pressable,
     StyleSheet,
@@ -14,6 +18,21 @@ const Sync = (): ReactNode => {
     const color = useColor();
     const translator = useLocalization();
 
+    const teachers = useStore($teachers);
+    const [selectedTeacher, setSelectedTeacher] = useState<listItem | null>(null);
+
+    //* Get teachers on mount
+    useEffect(() => {
+        // console.log('Absences mounted!'); //? debug
+
+        if (teachers.length > 0)
+            return;
+
+        getTeachers().catch(error => {
+            showToast(translator.get('NOTIFICATION_GET_TEACHERS_ERROR'));
+        });
+    }, []);
+
     /**
      * Syncs the local data to the API.
      * Then, notifies the user of the result.
@@ -21,13 +40,22 @@ const Sync = (): ReactNode => {
      * @returns {void}
      */
     const onSync = (): void => {
-        syncToApi(0, '') // TODO: Get the real data from input
+        if (!selectedTeacher) {
+            showToast(translator.get('LABEL_TEACHERS_DEFAULT'));
+            return;
+        }
+
+        syncToApi(
+            selectedTeacher.id,
+            '') // TODO: Get the real data from input
             .then(() => {
                 showToast(translator.get('NOTIFICATION_SYNC_SUCCESS'));
             }).catch(() => {
                 showToast(translator.get('NOTIFICATION_SYNC_ERROR'));
             });
     };
+
+    const onTeacherSelect = (item: listItem) => setSelectedTeacher(item);
 
     const styles = StyleSheet.create({
         background: {
@@ -42,9 +70,10 @@ const Sync = (): ReactNode => {
             lineHeight: 20,
             paddingVertical: 8
         },
-        buttonContainer: {
+        formContainer: {
             alignItems: 'center',
             flex: 1,
+            gap: 32,
             justifyContent: 'center'
         },
         button: {
@@ -65,7 +94,13 @@ const Sync = (): ReactNode => {
     return (
         <View style={styles.background}>
             <Text style={styles.text}>{translator.get('SYNC_TEXT')}</Text>
-            <View style={styles.buttonContainer}>
+            <View style={styles.formContainer}>
+                <Picker
+                    data={teachers}
+                    defaultButtonTextKey='LABEL_TEACHERS_DEFAULT'
+                    labelKey='LABEL_YOU_ARE'
+                    onSelect={onTeacherSelect}
+                />
                 <Pressable
                     onPress={onSync}
                     style={styles.button}

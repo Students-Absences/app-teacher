@@ -9,6 +9,7 @@
     "LABEL_SYNC": "Sync",
     "LABEL_TEACHER": "Teacher",
     "LABEL_TEACHERS_DEFAULT": "Choose a teacher",
+    "LABEL_YOU_ARE": "You are",
 
     "NOTIFICATION_GET_APPSETTINGS_ERROR": "Could not retrieve app settings",
     "NOTIFICATION_GET_ASSIGNMENTS_ERROR": "Could not retrieve assignments",
@@ -17,5 +18,5 @@
     "NOTIFICATION_SYNC_ERROR": "Sync failed",
     "NOTIFICATION_SYNC_SUCCESS": "Sync successful",
 
-    "SYNC_TEXT": "Tap the 'Sync' button below to make sure you have all the latest info. It's like a quick refresh!"
+    "SYNC_TEXT": "Fill in your secret password and tap the 'Sync' button below to make sure you have all the latest info. It's like a quick refresh!"
 }

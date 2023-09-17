@@ -29,6 +29,10 @@ const Absences = (): ReactNode => {
     //* Get teachers on mount
     useEffect(() => {
         // console.log('Absences mounted!'); //? debug
+
+        if (teachers.length > 0)
+            return;
+
         getTeachers().catch(error => {
             showToast(translator.get('NOTIFICATION_GET_TEACHERS_ERROR'));
         });
