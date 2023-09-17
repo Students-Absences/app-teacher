@@ -19,13 +19,13 @@ const Picker = (props: pickerProps): ReactNode => {
         },
         button: {
             backgroundColor: color.BACKGROUND_MEDIUM,
-            borderColor: color.TEXT_MEDIUM,
+            borderColor: props.disabled ? color.TEXT_LOW : color.TEXT_MEDIUM,
             borderRadius: 16,
             borderWidth: 1,
             width: '100%'
         },
         buttonText: {
-            color: color.TEXT_MEDIUM,
+            color: props.disabled ? color.TEXT_LOW : color.TEXT_MEDIUM,
             fontSize: 18,
         },
         container: {
@@ -35,13 +35,13 @@ const Picker = (props: pickerProps): ReactNode => {
             width: '100%'
         },
         label: {
-            color: color.TEXT_HIGH,
+            color: props.disabled ? color.TEXT_MEDIUM : color.TEXT_HIGH
         },
         row: {
-            backgroundColor: color.BACKGROUND_HIGH,
+            backgroundColor: color.BACKGROUND_HIGH
         },
         rowText: {
-            color: color.TEXT_HIGH,
+            color: color.TEXT_HIGH
         }
     });
 
@@ -52,6 +52,7 @@ const Picker = (props: pickerProps): ReactNode => {
             </Text>
             <SelectDropdown
                 data={props.data}
+                disabled={props.disabled}
                 dropdownStyle={styles.dropdown}
                 buttonStyle={styles.button}
                 buttonTextStyle={styles.buttonText}

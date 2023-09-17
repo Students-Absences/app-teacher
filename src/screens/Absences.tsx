@@ -84,12 +84,13 @@ const Absences = (): ReactNode => {
                 labelKey='LABEL_TEACHER'
                 onSelect={onTeacherSelect}
             />
-            <Picker
+            {selectedTeacher !== null && <Picker
                 data={assignments}
+                disabled={!selectedTeacher}
                 defaultButtonTextKey='PLACEHOLDER_ASSIGNMENT'
                 labelKey='LABEL_ASSIGNMENT'
                 onSelect={onAssignmentSelect}
-            />
+            />}
         </View>
     );
 };
