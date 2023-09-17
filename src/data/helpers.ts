@@ -9,6 +9,7 @@ import table from '@/data/enums/table';
 import { setTeachers } from '@/data/store/teachers';
 import { setSettings } from '@/data/store/settings';
 import { setAssignments } from '@/data/store/assignments';
+import { ToastAndroid } from 'react-native';
 
 /**
  * Gets the list of teachers from the database and updates the state of the component calling it.
@@ -118,3 +119,22 @@ export const absenceDate = (absence: absence): string => {
 const paddedString = (value: number): string => {
     return value.toString().padStart(2, '0');
 }
+
+/**
+ * Shows a toast message to the user.
+ * 
+ * @param message The message to show.
+ * @param duration The duration to show the message for. (ToastAndroid.SHORT | ToastAndroid.LONG)
+ * 
+ * @returns {void}
+ * 
+ * @example
+ * showToast(translator.get('NOTIFICATION_SYNC_SUCCESS'));
+ * showToast('Hello!', ToastAndroid.LONG);
+ */
+export const showToast = (message: string, duration = ToastAndroid.SHORT): void => {
+    ToastAndroid.show(
+        message,
+        duration
+    );
+};

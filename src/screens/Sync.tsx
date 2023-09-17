@@ -1,4 +1,5 @@
 import syncToApi from '@/data/api';
+import { showToast } from '@/data/helpers';
 import useColor from '@/hooks/useColor';
 import useLocalization from '@/hooks/useLocalization';
 import { ReactNode } from 'react';
@@ -6,7 +7,6 @@ import {
     Pressable,
     StyleSheet,
     Text,
-    ToastAndroid,
     View
 } from 'react-native';
 
@@ -18,20 +18,14 @@ const Sync = (): ReactNode => {
      * Syncs the local data to the API.
      * Then, notifies the user of the result.
      * 
-     * @returns
+     * @returns {void}
      */
-    const onSync = () => {
+    const onSync = (): void => {
         syncToApi()
             .then(() => {
-                ToastAndroid.show(
-                    translator.get('NOTIFICATION_SYNC_SUCCESS'),
-                    ToastAndroid.SHORT
-                )
+                showToast(translator.get('NOTIFICATION_SYNC_SUCCESS'));
             }).catch(() => {
-                ToastAndroid.show(
-                    translator.get('NOTIFICATION_SYNC_ERROR'),
-                    ToastAndroid.SHORT
-                )
+                showToast(translator.get('NOTIFICATION_SYNC_ERROR'));
             });
     };
 
