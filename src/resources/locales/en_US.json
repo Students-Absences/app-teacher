@@ -9,5 +9,7 @@
     "LABEL_TEACHERS_DEFAULT": "Choose a teacher",
 
     "NOTIFICATION_SYNC_ERROR": "Sync failed!",
-    "NOTIFICATION_SYNC_SUCCESS": "Sync successful!"
+    "NOTIFICATION_SYNC_SUCCESS": "Sync successful!",
+
+    "SYNC_TEXT": "Tap the 'Sync' button below to make sure you have all the latest info. It's like a quick refresh!"
 }

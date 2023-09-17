@@ -48,6 +48,11 @@ const Sync = (): ReactNode => {
             lineHeight: 20,
             paddingVertical: 8
         },
+        buttonContainer: {
+            alignItems: 'center',
+            flex: 1,
+            justifyContent: 'center'
+        },
         button: {
             alignItems: 'center',
             backgroundColor: color.BACKGROUND_MEDIUM,
@@ -65,12 +70,17 @@ const Sync = (): ReactNode => {
 
     return (
         <View style={styles.background}>
-            <Pressable
-                onPress={onSync}
-                style={styles.button}
-            >
-                <Text style={styles.buttonText}>{translator.get('LABEL_SYNC')}</Text>
-            </Pressable>
+            <Text style={styles.text}>{translator.get('SYNC_TEXT')}</Text>
+            <View style={styles.buttonContainer}>
+                <Pressable
+                    onPress={onSync}
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>
+                        {translator.get('LABEL_SYNC')}
+                    </Text>
+                </Pressable>
+            </View>
         </View>
     );
 };
