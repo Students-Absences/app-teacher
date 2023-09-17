@@ -41,7 +41,7 @@ const Sync = (): ReactNode => {
      */
     const onSync = (): void => {
         if (!selectedTeacher) {
-            showToast(translator.get('LABEL_TEACHERS_DEFAULT'));
+            showToast(translator.get('PLACEHOLDER_TEACHER'));
             return;
         }
 
@@ -97,7 +97,7 @@ const Sync = (): ReactNode => {
             <View style={styles.formContainer}>
                 <Picker
                     data={teachers}
-                    defaultButtonTextKey='LABEL_TEACHERS_DEFAULT'
+                    defaultButtonTextKey='PLACEHOLDER_TEACHER'
                     labelKey='LABEL_YOU_ARE'
                     onSelect={onTeacherSelect}
                 />

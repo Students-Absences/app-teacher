@@ -80,13 +80,13 @@ const Absences = (): ReactNode => {
         <View style={styles.background}>
             <Picker
                 data={teachers}
-                defaultButtonTextKey='LABEL_TEACHERS_DEFAULT'
+                defaultButtonTextKey='PLACEHOLDER_TEACHER'
                 labelKey='LABEL_TEACHER'
                 onSelect={onTeacherSelect}
             />
             <Picker
                 data={assignments}
-                defaultButtonTextKey='LABEL_ASSIGNMENT_DEFAULT'
+                defaultButtonTextKey='PLACEHOLDER_ASSIGNMENT'
                 labelKey='LABEL_ASSIGNMENT'
                 onSelect={onAssignmentSelect}
             />
