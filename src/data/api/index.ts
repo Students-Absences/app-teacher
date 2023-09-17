@@ -2,7 +2,7 @@ import axios from 'axios';
 import { deleteFromAllTables, getAbsences, insertData } from '@/data/database/db-methods';
 import { getDbConnection } from '@/data/database/db-service';
 import sync from '@/data/types/sync';
-import { absenceDate, getAppSettings, getTeachers } from '@/data/helpers';
+import { absenceDate, getAppSettings, getTeachers, showToast } from '@/data/helpers';
 import table from '@/data/enums/table';
 
 axios.defaults.baseURL = 'http://10.0.2.2:5231/';

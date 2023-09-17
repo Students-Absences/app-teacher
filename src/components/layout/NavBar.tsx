@@ -8,18 +8,22 @@ import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode, useEffect, useState } from 'react';
 import useColor from '@/hooks/useColor';
 import appSettings from '@/data/types/app-settings';
-import { getAppSettings } from '@/data/helpers';
+import { getAppSettings, showToast } from '@/data/helpers';
 import { useStore } from '@nanostores/react';
 import { $settings } from '@/data/store/settings';
+import useLocalization from '@/hooks/useLocalization';
 
 const NavBar = (): ReactNode => {
     const color = useColor();
+    const translator = useLocalization();
 
     const settings = useStore($settings);
 
     useEffect(() => {
         // console.log('NavBar mounted!'); //? debug
-        getAppSettings();
+        getAppSettings().catch(error => {
+            showToast(translator.get('NOTIFICATION_GET_APPSETTINGS_ERROR'));
+        });
     }, []);
 
     const styles = StyleSheet.create({

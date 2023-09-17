@@ -24,7 +24,8 @@ export const getTeachers = async (): Promise<void> => {
         // console.log('Teachers stored: ' + teachersFromDb); //? debug
         setTeachers(teachersFromDb);
     } catch (error) {
-        console.error(error);
+        console.error(error); //? Debug
+        throw error;
     }
 };
 
@@ -41,7 +42,8 @@ export const getAppSettings = async (): Promise<void> => {
         // console.log('Settings: ' + settingsFromDb); //? debug
         setSettings(settingsFromDb);
     } catch (error) {
-        console.error(error);
+        console.error(error); //? Debug
+        throw error;
     }
 };
 
@@ -60,7 +62,8 @@ export const getAssignmentsForTeacher = async (teacherId: number): Promise<void>
         // console.log('Assignments: ' + assignmentsFromDb); //? debug
         setAssignments(assignmentsFromDb);
     } catch (error) {
-        console.error(error);
+        console.error(error); //? Debug
+        throw error;
     }
 };
 
@@ -79,7 +82,8 @@ export const getStudentsForAssignment = async (assignmentId: number): Promise<vo
         // console.log('Students: ' + studentsFromDb); //? debug
         // setStudents(studentsFromDb); // TODO: Implement
     } catch (error) {
-        console.error(error);
+        console.error(error); //? Debug
+        throw error;
     }
 };
 

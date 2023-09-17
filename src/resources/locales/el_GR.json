@@ -10,8 +10,13 @@
     "LABEL_TEACHER": "Καθηγητής",
     "LABEL_TEACHERS_DEFAULT": "Επιλέξτε καθηγητή",
 
-    "NOTIFICATION_SYNC_ERROR": "Ο συγχρονισμός απέτυχε!",
-    "NOTIFICATION_SYNC_SUCCESS": "Επιτυχής συγχρονισμός!",
+    "NOTIFICATION_GET_APPSETTINGS_ERROR": "Η λήψη των ρυθμίσεων απέτυχε",
+    "NOTIFICATION_GET_ASSIGNMENTS_ERROR": "Η λήψη των αναθέσεων απέτυχε",
+    "NOTIFICATION_GET_TEACHERS_ERROR": "Η λήψη των καθηγητών απέτυχε",
+    "NOTIFICATION_GET_STUDENTS_ERROR": "Η λήψη των μαθητών απέτυχε",
+    "NOTIFICATION_SYNC_ERROR": "Ο συγχρονισμός απέτυχε",
+    "NOTIFICATION_SYNC_SUCCESS": "Επιτυχής συγχρονισμός",
+
 
     "SYNC_TEXT": "Πατήστε το κουμπί 'Συγχρονισμός' παρακάτω για να είστε σίγουροι ότι έχετε όλες τις τελευταίες πληροφορίες. Είναι σαν μια γρήγορη ανανέωση!"
 }
