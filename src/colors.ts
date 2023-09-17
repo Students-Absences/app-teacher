@@ -17,9 +17,11 @@ const Colors = {
     TEXT_DARK_HIGH: 'rgba(255, 255, 255, 0.87)',
     TEXT_DARK_MEDIUM: 'rgba(255, 255, 255, 0.65)',
     TEXT_DARK_LOW: 'rgba(255, 255, 255, 0.30)',
+    TEXT_DARK_WARNING: '#FF3C36',
     TEXT_LIGHT_HIGH: 'rgba(0, 0, 0, 0.87)',
     TEXT_LIGHT_MEDIUM: 'rgba(0, 0, 0, 0.65)',
     TEXT_LIGHT_LOW: 'rgba(0, 0, 0, 0.30)',
+    TEXT_LIGHT_WARNING: '#FF0800',
 
     //? Primary
     PRIMARY_DARK: '#6101EE',

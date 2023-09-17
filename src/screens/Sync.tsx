@@ -70,6 +70,9 @@ const Sync = (): ReactNode => {
             lineHeight: 20,
             paddingVertical: 8
         },
+        textWarning: {
+            color: color.TEXT_WARNING
+        },
         formContainer: {
             alignItems: 'center',
             flex: 1,
@@ -93,7 +96,12 @@ const Sync = (): ReactNode => {
 
     return (
         <View style={styles.background}>
-            <Text style={styles.text}>{translator.get('SYNC_TEXT')}</Text>
+            <Text style={styles.text}>
+                {translator.get('SYNC_TEXT')}
+            </Text>
+            <Text style={styles.textWarning}>
+                {translator.get('SYNC_TEXT_WARNING')}
+            </Text>
             <View style={styles.formContainer}>
                 <Picker
                     data={teachers}
