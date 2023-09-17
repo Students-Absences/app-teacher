@@ -8,17 +8,18 @@ import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode, useEffect, useState } from 'react';
 import useColor from '@/hooks/useColor';
 import appSettings from '@/data/types/app-settings';
-import { getAppSettingsFromDb } from '@/data/helpers';
+import { getAppSettings } from '@/data/helpers';
+import { useStore } from '@nanostores/react';
+import { $settings } from '@/data/store/settings';
 
 const NavBar = (): ReactNode => {
     const color = useColor();
 
-    const [settings, setAppSettings] = useState<appSettings>({
-        schoolName: 'Students Absence'
-    });
+    const settings = useStore($settings);
 
     useEffect(() => {
-        getAppSettingsFromDb(setAppSettings);
+        // console.log('NavBar mounted!'); //? debug
+        getAppSettings();
     }, []);
 
     const styles = StyleSheet.create({

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { deleteFromAllTables, getAbsences, insertData } from '@/data/database/db-methods';
 import { getDbConnection } from '@/data/database/db-service';
 import sync from '@/data/types/sync';
-import { absenceDate } from '@/data/helpers';
+import { absenceDate, getAppSettings, getTeachers } from '@/data/helpers';
 import table from '@/data/enums/table';
 
 axios.defaults.baseURL = 'http://10.0.2.2:5231/';
@@ -47,7 +47,9 @@ const syncToApi = async (): Promise<sync> => {
                 insertData(db, table.subjects, syncData.subjects);
                 insertData(db, table.teachers, syncData.teachers);
 
-                // TODO: Update state
+                // Update state
+                getTeachers();
+                getAppSettings();
             })
             .catch(function (error) {
                 throw error;
