@@ -1,4 +1,5 @@
 import Picker from '@/components/fields/Picker';
+import TextField from '@/components/fields/TextField';
 import syncToApi from '@/data/api';
 import { getTeachers, showToast } from '@/data/helpers';
 import { $teachers } from '@/data/store/teachers';
@@ -21,6 +22,8 @@ const Sync = (): ReactNode => {
     const teachers = useStore($teachers);
     const [selectedTeacher, setSelectedTeacher] = useState<listItem | null>(null);
 
+    const [pin, setPin] = useState<string>('');
+
     //* Get teachers on mount
     useEffect(() => {
         // console.log('Absences mounted!'); //? debug
@@ -32,6 +35,11 @@ const Sync = (): ReactNode => {
             showToast(translator.get('NOTIFICATION_GET_TEACHERS_ERROR'));
         });
     }, []);
+
+    //* Reset pin on teacher change
+    useEffect(() => {
+        setPin('');
+    }, [selectedTeacher]);
 
     /**
      * Syncs the local data to the API.
@@ -47,7 +55,7 @@ const Sync = (): ReactNode => {
 
         syncToApi(
             selectedTeacher.id,
-            '') // TODO: Get the real data from input
+            pin)
             .then(() => {
                 showToast(translator.get('NOTIFICATION_SYNC_SUCCESS'));
             }).catch(() => {
@@ -105,9 +113,16 @@ const Sync = (): ReactNode => {
             <View style={styles.formContainer}>
                 <Picker
                     data={teachers}
-                    defaultButtonTextKey='PLACEHOLDER_TEACHER'
+                    placeholderKey='PLACEHOLDER_TEACHER'
                     labelKey='LABEL_YOU_ARE'
                     onSelect={onTeacherSelect}
+                />
+                <TextField
+                    labelKey='LABEL_PIN'
+                    placeholderKey='PLACEHOLDER_PIN'
+                    onChangeText={setPin}
+                    value={pin}
+                    isPin
                 />
                 <Pressable
                     onPress={onSync}

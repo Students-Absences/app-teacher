@@ -26,7 +26,7 @@ const Picker = (props: pickerProps): ReactNode => {
         },
         buttonText: {
             color: props.disabled ? color.TEXT_LOW : color.TEXT_MEDIUM,
-            fontSize: 18,
+            fontSize: 18
         },
         container: {
             display: 'flex',
@@ -58,7 +58,7 @@ const Picker = (props: pickerProps): ReactNode => {
                 buttonTextStyle={styles.buttonText}
                 rowStyle={styles.row}
                 rowTextStyle={styles.rowText}
-                defaultButtonText={translator.get(props.defaultButtonTextKey)}
+                defaultButtonText={translator.get(props.placeholderKey)}
                 onSelect={props.onSelect}
                 buttonTextAfterSelection={(selectedItem: listItem, index) => {
                     return translator.getItem(selectedItem);

@@ -1,10 +1,8 @@
 import listItem from '@/data/types/list-item';
+import fieldProps from '@/data/types/field-props';
 
-interface pickerProps {
+interface pickerProps extends fieldProps {
     data: listItem[];
-    disabled?: boolean;
-    labelKey: string;
-    defaultButtonTextKey: string;
     onSelect: (item: listItem, index?: number) => void;
 };
 
