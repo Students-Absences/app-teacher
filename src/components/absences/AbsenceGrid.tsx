@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { StyleSheet, Text, VirtualizedList } from 'react-native';
+import { StyleSheet, Text, View, VirtualizedList } from 'react-native';
 import AbsenceItem from '@/components/absences/AbsenceItem';
 import absenceItem from '@/data/types/absence-item';
 import { $absenceItems } from '@/data/store/absence-items';
@@ -9,7 +9,7 @@ import useColor from '@/hooks/useColor';
 
 const AbsenceGrid = (): ReactNode => {
     const translator = useLocalization();
-    const colors = useColor();
+    const color = useColor();
 
     const absenceItems = useStore($absenceItems);
 
@@ -18,23 +18,46 @@ const AbsenceGrid = (): ReactNode => {
 
     const styles = StyleSheet.create({
         container: {
+            display: 'flex',
             flex: 1,
+            flexDirection: 'column',
+            gap: 4,
+        },
+        grid: {
+            backgroundColor: color.BACKGROUND_MEDIUM,
+            borderColor: color.TEXT_MEDIUM,
+            borderRadius: 16,
+            borderWidth: 1,
+            flex: 1,
+            paddingHorizontal: 12,
+            paddingVertical: 8
+        },
+        label: {
+            color: color.TEXT_HIGH
         },
         fallbackText: {
-            color: colors.TEXT_LOW
+            color: color.TEXT_LOW
         }
     });
 
     return (
         <>
         {getItemCount() > 0 ?
-            <VirtualizedList
-                data={absenceItems}
-                getItem={getItem}
-                getItemCount={getItemCount}
-                renderItem={({ item }: { item: absenceItem }) => <AbsenceItem props={item} />}
-                style={styles.container}
-            /> : <Text style={styles.fallbackText}>{translator.get('LABEL_NO_STUDENTS')}</Text>}
+            <View style={styles.container}>
+                <Text style={styles.label}>
+                    {translator.get('LABEL_STUDENTS')}
+                </Text>
+                <VirtualizedList
+                    data={absenceItems}
+                    getItem={getItem}
+                    getItemCount={getItemCount}
+                    renderItem={({ item }: { item: absenceItem }) => <AbsenceItem props={item} />}
+                    style={styles.grid}
+                />
+            </View> :
+            <Text style={styles.fallbackText}>
+                {translator.get('LABEL_NO_STUDENTS')}
+            </Text>}
         </>
     );
 };
