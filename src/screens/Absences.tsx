@@ -107,7 +107,7 @@ const Absences = (): ReactNode => {
                 labelKey='LABEL_ASSIGNMENT'
                 onSelect={onAssignmentSelect}
             />}
-            {selectedAssignment !== null && <AbsenceGrid />}
+            <AbsenceGrid />
         </View>
     );
 };
