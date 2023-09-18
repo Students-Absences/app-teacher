@@ -1,6 +1,6 @@
 import {
+    getAbsenceItems,
     getAppSettings as getAppSettingsFromDb,
-    getAssignmentStudents,
     getListItems,
     getTeacherAssignments
 } from '@/data/database/db-methods';
@@ -11,6 +11,7 @@ import { setTeachers } from '@/data/store/teachers';
 import { setSettings } from '@/data/store/settings';
 import { setAssignments } from '@/data/store/assignments';
 import { ToastAndroid } from 'react-native';
+import { setAbsenceItems } from '@/data/store/absence-items';
 
 /**
  * Gets the list of teachers from the database and updates the state of the component calling it.
@@ -79,9 +80,9 @@ export const getStudentsForAssignment = async (assignmentId: number): Promise<vo
     try {
         const db = await getDbConnection();
 
-        const studentsFromDb = await getAssignmentStudents(db, assignmentId);
+        const studentsFromDb = await getAbsenceItems(db, assignmentId);
         // console.log('Students: ' + studentsFromDb); //? debug
-        // setStudents(studentsFromDb); // TODO: Implement
+        setAbsenceItems(studentsFromDb);
     } catch (error) {
         console.error(error); //? Debug
         throw error;

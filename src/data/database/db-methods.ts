@@ -5,6 +5,7 @@ import table, { isListItem } from '@/data/enums/table';
 import absence from '@/data/types/absence';
 import appSettings from '@/data/types/app-settings';
 import person from '@/data/types/person';
+import absenceItem from '@/data/types/absence-item';
 
 /**
  * Select all teachers and return them as a combo item array.
@@ -145,31 +146,32 @@ export const getTeacherAssignments = async (db: SQLiteDatabase, teacherId: numbe
  * @param db The database connection.
  * @param assignmentId The assignment's id.
  * 
- * @returns {Promise<person[]>} All the assignment's students.
+ * @returns {Promise<absenceItem[]>} All the assignment's students.
  */
-export const getAssignmentStudents = async (db: SQLiteDatabase, assignmentId: number): Promise<person[]> => {
-    const students: person[] = [];
+export const getAbsenceItems = async (db: SQLiteDatabase, assignmentId: number): Promise<absenceItem[]> => {
+    const absenceItems: absenceItem[] = [];
 
     try {
-        const results = await executeQuery(db, 'SELECT_STUDENTS_FOR_ASSIGNMENT', [assignmentId]);
+        const results = await executeQuery(db, 'SELECT_ABSENCE_ITEMS', [assignmentId]);
         results.forEach(result => {
             for (let index = 0; index < result.rows.length; index++) {
                 const item = result.rows.item(index);
 
-                students.push({
+                absenceItems.push({
                     id: item.ID,
                     firstName: item.FIRSTNAME,
-                    lastName: item.LASTNAME
-                } as person);
+                    lastName: item.LASTNAME,
+                    isAbsent: item.ISABSENT > 0
+                } as absenceItem);
             }
         });
 
-        // console.log(`List: ${students}`); //? debug
+        // console.log(`List: ${absenceItems}`); //? debug
     } catch (error) {
         console.error(error);
     }
 
-    return students;
+    return absenceItems;
 };
 
 /**

@@ -8,13 +8,16 @@ import Picker from '@/components/fields/Picker';
 import listItem from '@/data/types/list-item';
 import {
     getAssignmentsForTeacher,
+    getStudentsForAssignment,
     getTeachers,
     showToast
 } from '@/data/helpers';
 import { useStore } from '@nanostores/react';
 import { $assignments, clearAssignments } from '@/data/store/assignments';
 import { $teachers } from '@/data/store/teachers';
+import { $absenceItems, clearAbsenceItems } from '@/data/store/absence-items';
 import useLocalization from '@/hooks/useLocalization';
+import AbsenceGrid from '@/components/absences/AbsenceGrid';
 
 const Absences = (): ReactNode => {
     const color = useColor();
@@ -33,9 +36,10 @@ const Absences = (): ReactNode => {
         if (teachers.length > 0)
             return;
 
-        getTeachers().catch(error => {
-            showToast(translator.get('NOTIFICATION_GET_TEACHERS_ERROR'));
-        });
+        getTeachers()
+            .catch(error => {
+                showToast(translator.get('NOTIFICATION_GET_TEACHERS_ERROR'));
+            });
     }, []);
 
     //* Clear selected teacher on teachers change
@@ -51,11 +55,23 @@ const Absences = (): ReactNode => {
         if (!selectedTeacher)
             clearAssignments();
         else
-            getAssignmentsForTeacher(selectedTeacher.id).catch(error => {
-                showToast(translator.get('NOTIFICATION_GET_ASSIGNMENTS_ERROR'));
-            });
+            getAssignmentsForTeacher(selectedTeacher.id)
+                .catch(error => {
+                    showToast(translator.get('NOTIFICATION_GET_ASSIGNMENTS_ERROR'));
+                });
         setSelectedAssignment(null);
     }, [selectedTeacher]);
+
+    //* Get absence items on selected assignment change
+    useEffect(() => {
+        if (!selectedAssignment)
+            clearAbsenceItems();
+        else
+            getStudentsForAssignment(selectedAssignment.id)
+                .catch(error => {
+                    showToast(translator.get('NOTIFICATION_GET_STUDENTS_ERROR'));
+                });
+    }, [selectedAssignment]);
 
     const onTeacherSelect = (item: listItem)=> setSelectedTeacher(item);
     const onAssignmentSelect = (item: listItem)=> setSelectedAssignment(item);
@@ -91,6 +107,7 @@ const Absences = (): ReactNode => {
                 labelKey='LABEL_ASSIGNMENT'
                 onSelect={onAssignmentSelect}
             />}
+            {selectedAssignment !== null && <AbsenceGrid />}
         </View>
     );
 };
