@@ -42,7 +42,7 @@ const TextField = (props: textfieldProps): ReactNode => {
                 placeholderTextColor={color.TEXT_LOW}
                 secureTextEntry={props.isPin}
                 textAlign={props.value === '' ? 'center' : 'left'}
-                maxLength={props.maxLength || 5}
+                maxLength={props.maxLength || 4}
                 keyboardType={props.isPin ? 'number-pad' : 'default'}
             />
         </View>

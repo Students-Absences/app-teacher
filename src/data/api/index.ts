@@ -20,55 +20,61 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
  * @returns sync object
  */
 const syncToApi = async (teacherId: number, teacherPin: string): Promise<syncIn> => {
-    let syncData = {} as syncIn;
+    return new Promise(async (resolve, reject) => {
+        let syncData = {} as syncIn;
 
-    try {
-        const db = await getDbConnection();
+        try {
+            const db = await getDbConnection();
 
-        const absences: absence[] = await getAbsences(db);
-        const data = JSON.stringify({
-            teacherId: teacherId,
-            teacherPin: teacherPin,
-            absences: absences.map(absence => {
-                return {
-                    studentId: absence.studentId,
-                    assignmentId: absence.assignmentId,
-                    dateIn: absenceDate(absence)
-                } as absenceBackend;
-            })
-        } as syncOut);
-        // console.log(data); //? debug
+            const absences: absence[] = await getAbsences(db);
+            const data = JSON.stringify({
+                teacherId: teacherId,
+                teacherPin: teacherPin,
+                absences: absences.map(absence => {
+                    return {
+                        studentId: absence.studentId,
+                        assignmentId: absence.assignmentId,
+                        dateIn: absenceDate(absence)
+                    } as absenceBackend;
+                })
+            } as syncOut);
+            // console.log(data); //? debug
 
-        axios.post('/sync', data)
-            .then(function (response) {
-                syncData = response.data as syncIn;
-                // console.log(syncData); //? debug
+            axios.post('/sync', data)
+                .then(function (response) {
+                    if (response.status !== 200)
+                        reject(response.statusText);
 
-                // Clear all tables
-                deleteFromAllTables(db);
+                    syncData = response.data as syncIn;
+                    // console.log(syncData); //? debug
 
-                // Repopulate tables with response data
-                insertData(db, table.appSettings, [syncData.appSettings]);
-                insertData(db, table.assignments, syncData.assignments);
-                insertData(db, table.classrooms, syncData.classrooms);
-                insertData(db, table.students, syncData.students);
-                insertData(db, table.studentClassrooms, syncData.studentClassrooms);
-                insertData(db, table.subjects, syncData.subjects);
-                insertData(db, table.teachers, syncData.teachers);
+                    // Clear all tables
+                    deleteFromAllTables(db);
 
-                // Update state
-                getTeachers();
-                getAppSettings();
-            })
-            .catch(function (error) {
-                throw error;
-            });
+                    // Repopulate tables with response data
+                    insertData(db, table.appSettings, [syncData.appSettings]);
+                    insertData(db, table.assignments, syncData.assignments);
+                    insertData(db, table.classrooms, syncData.classrooms);
+                    insertData(db, table.students, syncData.students);
+                    insertData(db, table.studentClassrooms, syncData.studentClassrooms);
+                    insertData(db, table.subjects, syncData.subjects);
+                    insertData(db, table.teachers, syncData.teachers);
 
-        return syncData;
-    } catch (error) {
-        // console.error(error); //? debug
-        throw error;
-    }
+                    // Update state
+                    getTeachers();
+                    getAppSettings();
+
+                    resolve(syncData);
+                })
+                .catch(function (error) {
+                    // console.error(error); //? debug
+                    reject(error);
+                });
+        } catch (error) {
+            // console.error(error); //? debug
+            reject(error);
+        }
+    });
 };
 
 export default syncToApi;

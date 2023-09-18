@@ -58,7 +58,8 @@ const Sync = (): ReactNode => {
             pin)
             .then(() => {
                 showToast(translator.get('NOTIFICATION_SYNC_SUCCESS'));
-            }).catch(() => {
+            })
+            .catch(() => {
                 showToast(translator.get('NOTIFICATION_SYNC_ERROR'));
             });
     };
