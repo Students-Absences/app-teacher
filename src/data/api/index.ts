@@ -6,8 +6,9 @@ import syncIn from '@/data/types/sync-in';
 import syncOut, { absenceBackend } from '@/data/types/sync-out';
 import { absenceDate, getAppSettings, getTeachers } from '@/data/helpers';
 import table from '@/data/enums/table';
+import { API_INFO } from '@/consts';
 
-axios.defaults.baseURL = 'http://10.0.2.2:5231/';
+axios.defaults.baseURL = API_INFO.baseUrl;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 /**
