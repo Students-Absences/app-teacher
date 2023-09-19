@@ -9,12 +9,7 @@ import route from '@/data/types/route';
 import Absences from '@/screens/Absences';
 import Home from '@/screens/Home';
 import Sync from '@/screens/Sync';
-import apiInfo from '@/data/types/api-info';
 import dbInfo from '@/data/types/db-info';
-
-export const API_INFO: apiInfo = {
-    baseUrl: 'http://10.0.2.2:5231/'
-};
 
 export const DB_INFO: dbInfo = {
     fileName: 'students-absence.db',
