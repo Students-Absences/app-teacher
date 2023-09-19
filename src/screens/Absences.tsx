@@ -1,7 +1,9 @@
 import useColor from '@/hooks/useColor';
 import { ReactNode, useEffect, useState } from 'react';
 import {
+    Pressable,
     StyleSheet,
+    Text,
     View
 } from 'react-native';
 import Picker from '@/components/fields/Picker';
@@ -76,6 +78,23 @@ const Absences = (): ReactNode => {
     const onTeacherSelect = (item: listItem)=> setSelectedTeacher(item);
     const onAssignmentSelect = (item: listItem)=> setSelectedAssignment(item);
 
+    /**
+     * Submits the absences to the local DB.
+     */
+    const onSubmit = (): void => {
+        if (!selectedTeacher) {
+            showToast(translator.get('PLACEHOLDER_TEACHER'));
+            return;
+        }
+
+        if (!selectedAssignment) {
+            showToast(translator.get('PLACEHOLDER_ASSIGNMENT'));
+            return;
+        }
+
+        throw new Error('Not implemented'); // TODO: Implement
+    };
+
     const styles = StyleSheet.create({
         background: {
             backgroundColor: color.BACKGROUND_LOW,
@@ -83,6 +102,23 @@ const Absences = (): ReactNode => {
             minHeight: '100%',
             paddingHorizontal: 16,
             paddingVertical: 64
+        },
+        button: {
+            alignItems: 'center',
+            backgroundColor: color.BACKGROUND_MEDIUM,
+            borderRadius: 100,
+            justifyContent: 'center',
+            paddingHorizontal: 32,
+            paddingVertical: 8,
+            minWidth: '60%'
+        },
+        buttonContainer: {
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        buttonText: {
+            color: color.TEXT_MEDIUM,
+            fontSize: 24
         },
         text: {
             color: color.TEXT_HIGH,
@@ -108,6 +144,16 @@ const Absences = (): ReactNode => {
                 onSelect={onAssignmentSelect}
             />}
             <AbsenceGrid />
+            <View style={styles.buttonContainer}>
+                <Pressable
+                    onPress={onSubmit}
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>
+                        {translator.get('LABEL_SUBMIT')}
+                    </Text>
+                </Pressable>
+            </View>
         </View>
     );
 };
