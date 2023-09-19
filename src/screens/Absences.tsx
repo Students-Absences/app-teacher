@@ -12,6 +12,7 @@ import {
     getAssignmentsForTeacher,
     getStudentsForAssignment,
     getTeachers,
+    insertAbsenceItems,
     showToast
 } from '@/data/helpers';
 import { useStore } from '@nanostores/react';
@@ -30,6 +31,8 @@ const Absences = (): ReactNode => {
 
     const assignments = useStore($assignments);
     const [selectedAssignment, setSelectedAssignment] = useState<listItem | null>(null);
+
+    const absenceItems = useStore($absenceItems);
 
     //* Get teachers on mount
     useEffect(() => {
@@ -92,7 +95,12 @@ const Absences = (): ReactNode => {
             return;
         }
 
-        throw new Error('Not implemented'); // TODO: Implement
+        if (absenceItems.length === 0) {
+            showToast(translator.get('NOTIFICATION_NO_STUDENTS'));
+            return;
+        }
+
+        insertAbsenceItems(absenceItems, selectedAssignment.id);
     };
 
     const styles = StyleSheet.create({

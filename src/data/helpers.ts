@@ -12,6 +12,7 @@ import { setSettings } from '@/data/store/settings';
 import { setAssignments } from '@/data/store/assignments';
 import { ToastAndroid } from 'react-native';
 import { setAbsenceItems } from '@/data/store/absence-items';
+import absenceItem from '@/data/types/absence-item';
 
 /**
  * Gets the list of teachers from the database and updates the state of the component calling it.
@@ -87,6 +88,52 @@ export const getStudentsForAssignment = async (assignmentId: number): Promise<vo
         console.error(error); //? Debug
         throw error;
     }
+};
+
+/**
+ * Inserts the list of absence items into the database.
+ * 
+ * @param data The list of absence items to insert.
+ * @param assignmentId The assignment's id.
+ * 
+ * @returns {Promise<void>}
+ */
+export const insertAbsenceItems = (data: absenceItem[], assignmentId: number): Promise<void> => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const db = await getDbConnection();
+
+            //* Prepare the date
+            const now = new Date();
+            // console.log(`Now: ${paddedString(now.getFullYear())
+            //     }-${paddedString(now.getMonth() + 1)
+            //     }-${paddedString(now.getDate())
+            //     }T${paddedString(now.getHours())
+            //     }:${paddedString(now.getMinutes())
+            //     }:00.000Z`); //? debug
+
+            //* Get the absent students
+            const absences: absence[] = data
+                .filter(item => item.isAbsent)
+                .map(absenceItem => {
+                    return {
+                        studentId: absenceItem.id,
+                        assignmentId: assignmentId,
+                        year: now.getFullYear(),
+                        month: now.getMonth() + 1,
+                        day: now.getDate(),
+                        hour: now.getHours(),
+                        minute: now.getMinutes()
+                    } as absence;
+                });
+            // console.log(`Items count: ${absences.length}`); //? debug
+
+            resolve();
+        } catch (error) {
+            console.error(error); //? Debug
+            reject(error);
+        }
+    });
 };
 
 /**
