@@ -17,6 +17,8 @@
     "NOTIFICATION_GET_ASSIGNMENTS_ERROR": "Η λήψη των αναθέσεων απέτυχε",
     "NOTIFICATION_GET_TEACHERS_ERROR": "Η λήψη των καθηγητών απέτυχε",
     "NOTIFICATION_GET_STUDENTS_ERROR": "Η λήψη των μαθητών απέτυχε",
+    "NOTIFICATION_SUBMIT_ERROR": "Η αποθήκευση των απουσιών απέτυχε",
+    "NOTIFICATION_SUBMIT_SUCCESS": "Επιτυχής αποθήκευση απουσιών",
     "NOTIFICATION_SYNC_ERROR": "Ο συγχρονισμός απέτυχε",
     "NOTIFICATION_SYNC_SUCCESS": "Επιτυχής συγχρονισμός",
 

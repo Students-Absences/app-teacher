@@ -17,6 +17,8 @@
     "NOTIFICATION_GET_ASSIGNMENTS_ERROR": "Could not retrieve assignments",
     "NOTIFICATION_GET_TEACHERS_ERROR": "Could not retrieve teachers",
     "NOTIFICATION_GET_STUDENTS_ERROR": "Could not retrieve students",
+    "NOTIFICATION_SUBMIT_ERROR": "Could not save absences",
+    "NOTIFICATION_SUBMIT_SUCCESS": "Absences saved successfully",
     "NOTIFICATION_SYNC_ERROR": "Sync failed",
     "NOTIFICATION_SYNC_SUCCESS": "Sync successful",
 
