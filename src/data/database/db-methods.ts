@@ -151,16 +151,22 @@ export const getAbsenceItems = async (db: SQLiteDatabase, assignmentId: number):
     const absenceItems: absenceItem[] = [];
 
     try {
-        const results = await executeQuery(db, 'SELECT_ABSENCE_ITEMS', [assignmentId]);
+        const now = new Date();
+        const results = await executeQuery(
+            db,
+            'SELECT_ABSENCE_ITEMS',
+            [now.getDate(), now.getMonth() + 1, now.getFullYear(), assignmentId]);
         results.forEach(result => {
             for (let index = 0; index < result.rows.length; index++) {
                 const item = result.rows.item(index);
+
+                console.log(`${item.ID}-${item.FIRSTNAME}-${item.LASTNAME}-${item.ABSENCES}`); //? debug
 
                 absenceItems.push({
                     id: item.ID,
                     firstName: item.FIRSTNAME,
                     lastName: item.LASTNAME,
-                    isAbsent: item.ISABSENT > 0
+                    isAbsent: item.ABSENCES > 0
                 } as absenceItem);
             }
         });
