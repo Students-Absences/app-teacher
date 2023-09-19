@@ -4,7 +4,7 @@ import { getDbConnection } from '@/data/database/db-service';
 import absence from '@/data/types/absence';
 import syncIn from '@/data/types/sync-in';
 import syncOut, { absenceBackend } from '@/data/types/sync-out';
-import { absenceDate, getAppSettings, getTeachers, showToast } from '@/data/helpers';
+import { absenceDate, getAppSettings, getTeachers } from '@/data/helpers';
 import table from '@/data/enums/table';
 
 axios.defaults.baseURL = 'http://10.0.2.2:5231/';
