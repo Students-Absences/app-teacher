@@ -128,6 +128,8 @@ export const insertAbsenceItems = (data: absenceItem[], assignmentId: number): P
                 });
             // console.log(`Items count: ${absences.length}`); //? debug
 
+            // TODO: Add implementation
+
             resolve();
         } catch (error) {
             console.error(error); //? Debug
