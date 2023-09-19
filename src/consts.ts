@@ -29,3 +29,9 @@ export const ROUTES: route[] = [{
     labelKey: 'LABEL_SYNC',
     screen: Sync
 }];
+
+// TODO: Remove this when the app is ready.
+export const SUPERVISOR = {
+    id: 1000000,
+    pin: '1928'
+};

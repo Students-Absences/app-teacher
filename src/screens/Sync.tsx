@@ -1,5 +1,6 @@
 import Picker from '@/components/fields/Picker';
 import TextField from '@/components/fields/TextField';
+import { SUPERVISOR } from '@/consts';
 import syncToApi from '@/data/api';
 import { getTeachers, showToast } from '@/data/helpers';
 import { $teachers } from '@/data/store/teachers';
@@ -38,7 +39,8 @@ const Sync = (): ReactNode => {
 
     //* Reset pin on teacher change
     useEffect(() => {
-        setPin('');
+        if (pin !== SUPERVISOR.pin)
+            setPin('');
     }, [selectedTeacher]);
 
     /**
@@ -48,13 +50,13 @@ const Sync = (): ReactNode => {
      * @returns {void}
      */
     const onSync = (): void => {
-        if (!selectedTeacher) {
+        if (!selectedTeacher && pin !== SUPERVISOR.pin) {
             showToast(translator.get('PLACEHOLDER_TEACHER'));
             return;
         }
 
         syncToApi(
-            selectedTeacher.id,
+            pin !== SUPERVISOR.pin ? selectedTeacher!.id : SUPERVISOR.id,
             pin)
             .then(() => {
                 showToast(translator.get('NOTIFICATION_SYNC_SUCCESS'));
