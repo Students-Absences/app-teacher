@@ -100,7 +100,13 @@ const Absences = (): ReactNode => {
             return;
         }
 
-        insertAbsenceItems(absenceItems, selectedAssignment.id);
+        insertAbsenceItems(absenceItems, selectedAssignment.id)
+            .then(() => {
+                showToast(translator.get('NOTIFICATION_SUBMIT_SUCCESS'));
+            })
+            .catch(error => {
+                showToast(translator.get('NOTIFICATION_SUBMIT_ERROR'));
+            });
     };
 
     const styles = StyleSheet.create({

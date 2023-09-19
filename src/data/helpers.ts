@@ -1,8 +1,10 @@
 import {
+    deleteAbsencesForAssignment,
     getAbsenceItems,
     getAppSettings as getAppSettingsFromDb,
     getListItems,
-    getTeacherAssignments
+    getTeacherAssignments,
+    insertData
 } from '@/data/database/db-methods';
 import { getDbConnection } from '@/data/database/db-service';
 import table from '@/data/enums/table';
@@ -112,25 +114,32 @@ export const insertAbsenceItems = (data: absenceItem[], assignmentId: number): P
             //     }:${paddedString(now.getMinutes())
             //     }:00.000Z`); //? debug
 
-            //* Get the absent students
-            const absences: absence[] = data
-                .filter(item => item.isAbsent)
-                .map(absenceItem => {
-                    return {
-                        studentId: absenceItem.id,
-                        assignmentId: assignmentId,
-                        year: now.getFullYear(),
-                        month: now.getMonth() + 1,
-                        day: now.getDate(),
-                        hour: now.getHours(),
-                        minute: now.getMinutes()
-                    } as absence;
+            deleteAbsencesForAssignment(db, assignmentId, now.getDate(), now.getMonth() + 1, now.getFullYear())
+                .then(() => {
+                    //* Get the absent students
+                    const absences: absence[] = data
+                        .filter(item => item.isAbsent)
+                        .map(absenceItem => {
+                            return {
+                                studentId: absenceItem.id,
+                                assignmentId: assignmentId,
+                                year: now.getFullYear(),
+                                month: now.getMonth() + 1,
+                                day: now.getDate(),
+                                hour: now.getHours(),
+                                minute: now.getMinutes()
+                            } as absence;
+                        });
+                    // console.log(`Items count: ${absences.length}`); //? debug
+
+                    if (absences.length > 0)
+                        insertData(db, table.absences, absences);
+                })
+                .then(() => resolve())
+                .catch(error => {
+                    console.error(error); //? Debug
+                    reject(error);
                 });
-            // console.log(`Items count: ${absences.length}`); //? debug
-
-            // TODO: Add implementation
-
-            resolve();
         } catch (error) {
             console.error(error); //? Debug
             reject(error);

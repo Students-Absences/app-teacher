@@ -1,5 +1,4 @@
 interface absence {
-    id: number;
     minute: number;
     hour: number;
     day: number;

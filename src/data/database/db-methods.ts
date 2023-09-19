@@ -4,7 +4,6 @@ import { executeQuery } from '@/data/database/db-service';
 import table, { isListItem } from '@/data/enums/table';
 import absence from '@/data/types/absence';
 import appSettings from '@/data/types/app-settings';
-import person from '@/data/types/person';
 import absenceItem from '@/data/types/absence-item';
 
 /**
@@ -226,6 +225,40 @@ export const createAllTables = async (db: SQLiteDatabase): Promise<void> => {
     } catch (error) {
         console.error(error);
     }
+};
+
+/**
+ * Deletes all absences for the assignment with the given id.
+ * 
+ * @param db The database connection.
+ * @param assignmentId The assignment's id.
+ * @param day Day of the absence.
+ * @param month Month of the absence.
+ * @param year Year of the absence.
+ * 
+ * @returns {Promise<void>}
+ */
+export const deleteAbsencesForAssignment = async (
+    db: SQLiteDatabase,
+    assignmentId: number,
+    day: number,
+    month: number,
+    year: number
+): Promise<void> => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await executeQuery(
+                db, 
+                'DELETE_ABSENCES_ASSIGNMENT',
+                [assignmentId, day, month, year]
+            );
+
+            resolve();
+        } catch (error) {
+            console.error(error); //? Debug
+            reject(error);
+        }
+    });
 };
 
 /**
