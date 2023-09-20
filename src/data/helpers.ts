@@ -123,9 +123,9 @@ export const insertAbsenceItems = (data: absenceItem[], assignmentId: number): P
                             return {
                                 studentId: absenceItem.id,
                                 assignmentId: assignmentId,
-                                year: now.getFullYear(),
-                                month: now.getMonth() + 1,
                                 day: now.getDate(),
+                                month: now.getMonth() + 1,
+                                year: now.getFullYear(),
                                 hour: now.getHours(),
                                 minute: now.getMinutes()
                             } as absence;

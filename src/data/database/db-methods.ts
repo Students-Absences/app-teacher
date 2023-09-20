@@ -55,7 +55,6 @@ export const getAbsences = async (db: SQLiteDatabase): Promise<absence[]> => {
                 const item = result.rows.item(index);
 
                 absences.push({
-                    id: item.ID,
                     minute: item.MINUTE,
                     hour: item.HOUR,
                     day: item.DAY,
@@ -194,7 +193,24 @@ export const insertData = (db: SQLiteDatabase, table: table, entries: any[]): vo
         `INSERT_${table}`;
 
     try {
-        const promises = entries.map(entry => executeQuery(db, queryKey, Object.values(entry), table));
+        const promises = entries.map(entry => {
+            let params: any[] = Object.values(entry);
+            // TODO: Do for all types
+            // Create helper method which accepts antry and returns correctly ordered params
+            if (table === 'ABSENCE') {
+                params = [
+                    entry.minute,
+                    entry.hour,
+                    entry.day,
+                    entry.month,
+                    entry.year,
+                    entry.assignmentId,
+                    entry.studentId
+                ];
+            }
+
+            executeQuery(db, queryKey, params, table)
+        });
 
         Promise.all(promises).then(values => {
             // console.log(`Inserted entries: ${entries}.`); //? debug

@@ -4,8 +4,8 @@ interface absence {
     day: number;
     month: number;
     year: number;
-    studentId: number;
     assignmentId: number;
+    studentId: number;
 }
 
 export default absence;
