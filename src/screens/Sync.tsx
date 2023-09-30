@@ -92,7 +92,7 @@ const Sync = (): ReactNode => {
         },
         button: {
             alignItems: 'center',
-            backgroundColor: color.BACKGROUND_MEDIUM,
+            backgroundColor: color.PRIMARY,
             borderRadius: 100,
             justifyContent: 'center',
             paddingHorizontal: 32,
