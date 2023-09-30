@@ -15,8 +15,7 @@ const useColor = () => {
         TEXT_HIGH: isDarkMode ? Color.TEXT_DARK_HIGH : Color.TEXT_LIGHT_HIGH,
         TEXT_WARNING: isDarkMode ? Color.TEXT_DARK_WARNING : Color.TEXT_LIGHT_WARNING,
 
-        PRIMARY: isDarkMode ? Color.PRIMARY_DARK : Color.PRIMARY_LIGHT,
-        SECONDARY: isDarkMode ? Color.SECONDARY_DARK : Color.SECONDARY_LIGHT
+        PRIMARY: isDarkMode ? Color.PRIMARY_DARK : Color.PRIMARY_LIGHT
     }
 };
 

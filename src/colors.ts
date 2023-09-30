@@ -27,11 +27,7 @@ const Colors = {
 
     //? Primary
     PRIMARY_DARK: '#6101EE',
-    PRIMARY_LIGHT: '#2196F3',
-
-    //? Secondary
-    SECONDARY_DARK: '#CE93D8',
-    SECONDARY_LIGHT: '#90CAF9',
+    PRIMARY_LIGHT: '#2196F3'
 };
 
 export default Colors;
