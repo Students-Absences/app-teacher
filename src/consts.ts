@@ -30,7 +30,6 @@ export const ROUTES: route[] = [{
     screen: Sync
 }];
 
-// TODO: Remove this when the app is ready.
 export const SUPERVISOR = {
     id: 1000000,
     pin: '1928'
