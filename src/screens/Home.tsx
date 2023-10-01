@@ -43,7 +43,7 @@ const Home = (): ReactNode => {
             minWidth: '60%'
         },
         buttonText: {
-            color: color.TEXT_MEDIUM,
+            color: color.TEXT_HIGH,
             fontSize: 24
         }
     });

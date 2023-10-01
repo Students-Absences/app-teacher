@@ -27,5 +27,5 @@
     "PLACEHOLDER_TEACHER": "Choose a teacher",
 
     "SYNC_TEXT": "Enter your pin and tap the 'Sync' button below to retrieve all the latest updates. It's like a quick refresh!",
-    "SYNC_TEXT_WARNING": "Warning: This action will delete all saved absences and replace data."
+    "SYNC_TEXT_WARNING": "Warning: This action will delete all locally saved absences and replace data."
 }

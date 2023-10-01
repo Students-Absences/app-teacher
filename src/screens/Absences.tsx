@@ -131,7 +131,7 @@ const Absences = (): ReactNode => {
             justifyContent: 'center'
         },
         buttonText: {
-            color: color.TEXT_MEDIUM,
+            color: color.TEXT_HIGH,
             fontSize: 24
         },
         text: {
