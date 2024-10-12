@@ -1,4 +1,4 @@
-import useDarkMode from '@/hooks/useDarkMode';
+import useDarkMode from '@/data/hooks/useDarkMode';
 import Color from '@/colors';
 
 const useColor = () => {

@@ -1,6 +1,6 @@
 import { updateAbsenceItem } from '@/data/store/absence-items';
 import absenceItem from '@/data/types/absence-item';
-import useColor from '@/hooks/useColor';
+import useColor from '@/data/hooks/useColor';
 import { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 

@@ -4,8 +4,8 @@ import AbsenceItem from '@/components/absences/AbsenceItem';
 import absenceItem from '@/data/types/absence-item';
 import { $absenceItems } from '@/data/store/absence-items';
 import { useStore } from '@nanostores/react';
-import useLocalization from '@/hooks/useLocalization';
-import useColor from '@/hooks/useColor';
+import useLocalization from '@/data/hooks/useLocalization';
+import useColor from '@/data/hooks/useColor';
 
 const AbsenceGrid = (): ReactNode => {
     const translator = useLocalization();

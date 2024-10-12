@@ -4,12 +4,12 @@ import {
     StyleSheet
 } from 'react-native';
 import NavBar from '@/components/layout/NavBar';
-import useDarkMode from '@/hooks/useDarkMode';
+import useDarkMode from '@/data/hooks/useDarkMode';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ReactNode, useCallback, useEffect } from 'react';
 import CustomDrawerContent from '@/components/drawer/CustomDrawerContent';
-import useColor from '@/hooks/useColor';
+import useColor from '@/data/hooks/useColor';
 import { ROUTES } from '@/consts';
 import { initializeDb } from '@/data/database/db-service';
 

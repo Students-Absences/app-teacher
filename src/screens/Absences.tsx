@@ -1,4 +1,4 @@
-import useColor from '@/hooks/useColor';
+import useColor from '@/data/hooks/useColor';
 import { ReactNode, useEffect, useState } from 'react';
 import {
     Pressable,
@@ -19,7 +19,7 @@ import { useStore } from '@nanostores/react';
 import { $assignments, clearAssignments } from '@/data/store/assignments';
 import { $teachers } from '@/data/store/teachers';
 import { $absenceItems, clearAbsenceItems } from '@/data/store/absence-items';
-import useLocalization from '@/hooks/useLocalization';
+import useLocalization from '@/data/hooks/useLocalization';
 import AbsenceGrid from '@/components/absences/AbsenceGrid';
 
 const Absences = (): ReactNode => {

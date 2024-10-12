@@ -1,5 +1,5 @@
-import useColor from '@/hooks/useColor';
-import useLocalization from '@/hooks/useLocalization';
+import useColor from '@/data/hooks/useColor';
+import useLocalization from '@/data/hooks/useLocalization';
 import listItem from '@/data/types/list-item';
 import pickerProps from '@/data/types/picker-props';
 import { ReactNode } from 'react';

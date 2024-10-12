@@ -6,12 +6,12 @@ import {
 } from 'react-native';
 import DrawerToggle from '@/components/drawer/DrawerToggle';
 import { ReactNode, useEffect, useState } from 'react';
-import useColor from '@/hooks/useColor';
+import useColor from '@/data/hooks/useColor';
 import appSettings from '@/data/types/app-settings';
 import { getAppSettings, showToast } from '@/data/helpers';
 import { useStore } from '@nanostores/react';
 import { $settings } from '@/data/store/settings';
-import useLocalization from '@/hooks/useLocalization';
+import useLocalization from '@/data/hooks/useLocalization';
 
 const NavBar = (): ReactNode => {
     const color = useColor();

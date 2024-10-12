@@ -5,8 +5,8 @@ import syncToApi from '@/data/api';
 import { getTeachers, showToast } from '@/data/helpers';
 import { $teachers } from '@/data/store/teachers';
 import listItem from '@/data/types/list-item';
-import useColor from '@/hooks/useColor';
-import useLocalization from '@/hooks/useLocalization';
+import useColor from '@/data/hooks/useColor';
+import useLocalization from '@/data/hooks/useLocalization';
 import { useStore } from '@nanostores/react';
 import { ReactNode, useEffect, useState } from 'react';
 import {

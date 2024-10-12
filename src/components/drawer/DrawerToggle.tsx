@@ -1,5 +1,5 @@
-import useDarkMode from '@/hooks/useDarkMode';
-import useColor from '@/hooks/useColor';
+import useDarkMode from '@/data/hooks/useDarkMode';
+import useColor from '@/data/hooks/useColor';
 import React from 'react';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import {

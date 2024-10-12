@@ -1,6 +1,6 @@
 import textfieldProps from '@/data/types/textfield-props';
-import useColor from '@/hooks/useColor';
-import useLocalization from '@/hooks/useLocalization';
+import useColor from '@/data/hooks/useColor';
+import useLocalization from '@/data/hooks/useLocalization';
 import { ReactNode } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 

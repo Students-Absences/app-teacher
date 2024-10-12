@@ -1,7 +1,7 @@
 import { ROUTES } from '@/consts';
 import Link from '@/buttons/Link';
-import useColor from '@/hooks/useColor';
-import useLocalization from '@/hooks/useLocalization';
+import useColor from '@/data/hooks/useColor';
+import useLocalization from '@/data/hooks/useLocalization';
 import route from '@/data/types/route';
 import { ReactNode } from 'react';
 import {
