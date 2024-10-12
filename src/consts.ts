@@ -6,9 +6,9 @@
  */
 
 import route from '@/data/types/route';
-import Absences from '@/screens/Absences';
-import Home from '@/screens/Home';
-import Sync from '@/screens/Sync';
+import Absences from '@/components/screens/Absences';
+import Home from '@/components/screens/Home';
+import Sync from '@/components/screens/Sync';
 import dbInfo from '@/data/types/db-info';
 
 export const DB_INFO: dbInfo = {
