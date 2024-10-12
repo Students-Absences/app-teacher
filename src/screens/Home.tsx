@@ -1,5 +1,5 @@
 import { ROUTES } from '@/consts';
-import Link from '@/buttons/Link';
+import Link from '@/components/buttons/Link';
 import useColor from '@/data/hooks/useColor';
 import useLocalization from '@/data/hooks/useLocalization';
 import route from '@/data/types/route';
