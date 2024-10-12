@@ -37,7 +37,7 @@ export const initializeDb = async (): Promise<void> => {
     try {
         const db = await getDbConnection();
 
-//         dropAllTables(db);
+        dropAllTables(db); // For development
         await createAllTables(db);
     } catch (error) {
         console.error(error);
