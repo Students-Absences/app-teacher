@@ -2,6 +2,8 @@
 
 This is the mobile application used by teachers.
 
+> ### ⚠️ This project has been dropped and only a demo version exists.
+
 [![Students absence](https://img.shields.io/badge/Students-absence-blueviolet)](https://github.com/Students-Absences/app-teacher)
 
 ## Table of contents
